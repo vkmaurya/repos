@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GoogleLogin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+   
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+
+        .fonts {
+            font-size: 40px;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <center>
+                    <div style="background-color: #00FFFF;height: 400px;width: 400px;margin-top: 120px;">
+                        <div style="padding-top: 30px;">
+                            <h1 style="font-size: 60px;"><span style="color:#0000FF">A</span><span style="color:#DC143C ">d</span><span style="color:#FF8C00">m</span><span style="color:#0000FF">i</span><span style="color:#008000">n</span></h1>
+                        </div>
+                        <br />
+
+
+
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-8">
+                                <span><i class="fa fa-user fonts" aria-hidden="true"></i><input type="text" class="form-control" id="username" style="border-radius: 25px" placeholder="Enter UserName"></span><span id="messageusername"></span>
+                            </div>
+                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-8">
+                                <i class="fa fa-unlock-alt fonts" aria-hidden="true"></i><input type="password" class="form-control" id="password" style="border-radius: 25px" placeholder="Enter Password"><span id="messagepassword"></span>
+                            </div>
+                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-8">
+                                <i class="fa fa-sign-in fonts" aria-hidden="true"></i><input type="submit" onclick="adminlogin();" class="btn btn-light" style="border-radius: 25px;height: 45px;width: 125px;" value="Login">
+                            </div>
+                            <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        function adminlogin() {
+
+            data = {};
+            var username = $("#username").val();
+            var password = $("#password").val();
+
+
+            //if (username == "") {
+
+            //    $("#username").css("border", "2px solid red")
+
+
+            //}
+            //else {
+            //    $("#username").css("border", "2px solid green")
+
+            //}
+
+
+            //if (password == "") {
+
+            //    $("#password").css("border", "2px solid red")
+
+            //}
+            //else {
+            //    $("#password").css("border", "2px solid green")
+
+            //}
+
+            data.UserName = username;
+            data.Password = password;
+       
+
+            $.ajax({
+                type: "Post",
+                url: "/Admin/Adminlogin",
+                data: data,
+                success: function (result) {
+
+                    if (result != null) {
+                        if (result == "login") {
+
+
+                            window.location = "/Admin/MasertPage/";
+
+                        }
+                        else if (result == "invalidusernameandpassword ") {
+
+                            alert("Invalid username And Password");
+
+                        }
+                    }
+                    else {
+
+
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

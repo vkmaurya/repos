@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/AdminTemplatefile/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/AdminTemplatefile/css/style.css" rel="stylesheet" />
+    <link href="~/Content/cssstyleFile/AccomodationTypeStyle.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/AdminTemplatefile/css/simple-sidebar.css" rel="stylesheet" />
+
+    <link href="~/datatabe/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/datatabe/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @*<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet" />*@
+    <link href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading"><i style="color:white" class="fa fa-th blinking" aria-hidden="true"></i> Admin Dashboard </div>
+            <div class="list-group list-group-flush">
+                <a href="/Admin/MasterPage" class="list-group-item list-group-item-action bg-light" style="font-size:19px"><i class="fa fa-archive" style="font-size:26px" aria-hidden="true"></i> MasterPage</a>
+                <a href="/AccomodationTypes/AccomodationType" class="list-group-item list-group-item-action bg-light" style="font-size:19px"><i class="fa fa-building" aria-hidden="true" style="font-size:26px"></i> Accomodation Type</a>
+                <a href="/AccomodationPackages/AccomodationPackage" class="list-group-item list-group-item-action bg-light" style="font-size:16px"><i class="fa fa-tasks" aria-hidden="true" style="font-size:24px"></i> AccomodationPackages</a>
+                <a href="/Accomodation/AccomodationPages" class="list-group-item list-group-item-action bg-light" style="font-size:16px"><i class="fa fa-tasks" aria-hidden="true" style="font-size:24px"></i> Accomodation</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light" style="font-size:19px"> <i class="fa fa-asterisk" aria-hidden="true" style="font-size:26px"></i>     Roles</a>
+                <a href="/User/UserPage" class="list-group-item list-group-item-action bg-light" style="font-size:19px"> <i class="fa fa-users" aria-hidden="true" style="font-size:26px"></i>    Users</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" style="font-size:36px"></i></button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="btn logout nav-link" href="#" style="font-size:28px"><i class="fa fa-sign-out blinking" style="font-size:30px;color:red!important" aria-hidden="true"></i> LogOut</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/AdminTemplatefile/vendor/jquery/jquery.min.js"></script>
+    <script src="~/AdminTemplatefile/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @*<script src="~/datatabe/js/dataTables.bootstrap.min.js"></script>*@/js/dataTables.fixedColumns.js
+    <script src="~/datatabe/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+
+    <script src="~/Scripts/jsfile/AccomodationTypejsfile.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });</script>
+</body>
+</html>
+

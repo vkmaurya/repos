@@ -1,0 +1,427 @@
+﻿
+@{
+    ViewBag.Title = "ViewRecords";
+}
+
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+<div class="container" style="margin-top:20px;">
+    <!-- Trigger the modal with a button -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+
+            <button type="button" class="btn btn-success" style="margin-bottom:20px;" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i>  Add New Courses</button>
+
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6"><h2 style="margin-bottom:20px;"><span id="messageshow" style="font-style:italic"></span></h2></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" style="color:red" class="close" data-dismiss="modal" onclick="Reset();">&times;</button>
+                    <h4 class="modal-title">Add New Courses</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <label for="Courses" class="col-sm-2 col-form-label"> COURSES</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="Courses" placeholder="Enter Courses">
+                            <span id="Coursesvalidation"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="Courses" class="col-sm-2 col-form-label"> </label>
+                        <div class="col-sm-10">
+                            <input type="submit" class="form-control btn btn-success" onclick="add();" value="SUBMIT">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" onclick="Reset();">Reset</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="Reset();">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover" id="coursetable">
+        <thead>
+            <tr>
+                <th onclick="get();">ID</th>
+                <th>COURSENAME</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody id="coursetable1"></tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+
+
+    <!-- Trigger the modal with a button -->
+    <!-- Modal -->
+    <div id="myupdateModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" style="color:red" data-dismiss="modal" onclick="Resetupdate();">&times;</button>
+                    <h4 class="modal-title">UPDATE COURSES RECORDS</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-group row">
+                        <label for="Courses" class="col-sm-2 col-form-label"> COURSES</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="hidden" id="id" placeholder="Enter Courses">
+                            <input type="text" class="form-control" id="Coursesupdate" placeholder="Enter Courses">
+                            <span id="Coursesvalidationupdate"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="Courses" class="col-sm-2 col-form-label"> </label>
+                        <div class="col-sm-10">
+
+                            <input type="submit" class="form-control btn btn-success" onclick="update();" value="SUBMIT">
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" onclick="Resetupdate();">Reset</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="Resetupdate();">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myDeleteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" style="color:yellow" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:aqua">DELETE COURSES</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="deleteid" class="hidden" />
+
+                    <h3 style="color:cyan">Do You Wont To Delete This Records</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cDelete();">Delete</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+       
+        get();
+
+    });
+
+    function get() {
+
+
+        $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "/Course/GetRecords",
+            data: "{}",
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+                $.each(response, function (index, result) {
+
+                    $("#coursetable1").append("<tr><td>" + result.Id + "</td><td>" + result.CourseName + "</td><td><button type='button' class='btn btn-primary' onclick='search(" + result.Id + ")'>UpDate</button> <button type='button' class='btn btn-danger' onclick='Delete(" + result.Id + ")' >Delete</button></td></tr>");
+                });
+                z
+            }
+
+        });
+    };
+</script>
+
+<script>
+    $("#coursetable").dataTable();
+</script>
+
+<script>
+    function add() {
+
+        data = {};
+        var coursesname = $("#Courses").val();
+        var coursesnamevaldation = /^[A-Za-z]+$/;
+
+        if (coursesname == "") {
+            $("#Coursesvalidation").html('**this field required');
+            $("#Coursesvalidation").css("color", "red");
+        }
+        else if (!coursesnamevaldation.test(coursesname)) {
+            $("#Coursesvalidation").html('Please Enter only alphabets in textme');
+            $("#Coursesvalidation").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#Coursesvalidation").html('');
+        }
+
+        if (coursesname != "" && coursesnamevaldation.test(coursesname) == true) {
+            data.CourseName = coursesname;
+
+            $("#myModal").modal("hide");
+
+            $.ajax({    //create an ajax request to display.php
+                type: "POST",
+                url: "/Course/Add",
+                data: data,
+                dataType: "JSON",   //expect html to be returned
+                success: function (response) {
+
+                    
+
+                    if (response != null) {
+
+                        if (response == "success") {
+
+
+                            $("#messageshow").html('Add Successfully');
+                            $("#messageshow").css("color", "green");
+
+                        }
+                        else if (response == "error") {
+
+                            $("#messageshow").html('Courses Not Add');
+                            $("#messageshow").css("color", "#FF0000");
+
+                        }
+                        else if (response == "exception") {
+
+                            $("#messageshow").html('SomeThing Wonts Wrong');
+                            $("#messageshow").css("color", "#FFFF00");
+                        }
+                        else {
+                            $("#messageshow").html('Network Problems');
+                            $("#messageshow").css("color", "#8B4513");
+                        }
+                    }
+                    else {
+
+                        $("#messageshow").html('Network Problems');
+                        $("#messageshow").css("color", "#8B4513");
+                    }
+
+                }
+
+            });
+        }
+
+
+    }
+</script>
+
+
+<script>
+    function Reset() {
+
+        $("#Courses").val("");
+        $("#Coursesvalidation").html('');
+    }
+</script>
+
+<script>
+    function search(id) {
+        data = {};
+        data.Id = id;
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "/Course/search",
+            data: data,
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+
+                $("#myupdateModal").modal("show");
+                $("#Coursesupdate").val(response.CourseName);
+                $("#id").val(response.Id);
+            }
+
+        });
+    }
+</script>
+
+<script>
+    function update() {
+        
+        data = {};
+
+        var id = $("#id").val();
+
+        var coursesname = $("#Coursesupdate").val();
+        var coursesnamevaldation = /^[A-Za-z]+$/;
+
+        if (coursesname == "") {
+            $("#Coursesvalidationupdate").html('**this field required');
+            $("#Coursesvalidationupdate").css("color", "red");
+        }
+        else if (!coursesnamevaldation.test(coursesname)) {
+            $("#Coursesvalidationupdate").html('Please Enter only alphabets in textme');
+            $("#Coursesvalidationupdate").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#Coursesvalidationupdate").html('');
+        }
+
+        //if (coursesname != "" && coursesnamevaldation.test(coursesname) == true) {
+            data.Id = id;
+        data.CourseName = coursesname; 
+
+        $("#myupdateModal").modal("hide");
+
+            $.ajax({    //create an ajax request to display.php
+                type: "POST",
+                url: "/Course/update",
+                data: data,
+                dataType: "JSON",   //expect html to be returned
+                success: function (response) {
+
+                    if (response != null) {
+                        if (response == "updatesuccess") {
+
+                            $("#messageshow").html('Update Successfully');
+                            $("#messageshow").css("color", "green");
+                        }
+                        else if (response == "updateerror") {
+
+                            $("#messageshow").html('Not Update Records');
+                            $("#messageshow").css("color", "#FF0000");
+
+                        }
+                        else if (response = "updateexception") {
+
+                            $("#messageshow").html('Something Wont Wrong');
+                            $("#messageshow").css("color", "#FFFF00");
+
+                        }
+                        else {
+
+                            $("#messageshow").html('Something Wont Wrong');
+                            $("#messageshow").css("color", "#FFFF00");
+                        }
+                    }
+                   
+                    else {
+
+                        $("#messageshow").html('NetWork Problems');
+                        $("#messageshow").css("color", "#8B4513");
+
+                    }
+                }
+
+            });
+        //}
+
+
+    }
+</script>
+
+<script>
+    function Resetupdate() {
+
+        $("#Coursesupdate").val("");
+        $("#Coursesvalidationupdate").html('');
+    }
+</script>
+
+<script>
+    function Delete(id) {
+        $("#myDeleteModal").modal("show");
+        $("#deleteid").val(id);
+
+    }
+</script>
+
+<script>
+    function cDelete() {
+        data = {};
+        var id = $("#deleteid").val();
+        data.Id = id;
+        $("#myDeleteModal").modal("hide");
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "/Course/Delete",
+            data: data,
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+                if (response != null) {
+
+                    if (response = "Deletesuccess") {
+
+                        $("#messageshow").html('Delete Successfully');
+                        $("#messageshow").css("color", "green");
+
+                    }
+                    else if (response == "Deleteerror") {
+
+
+                        $("#messageshow").html('Not Delete Records');
+                        $("#messageshow").css("color", "#FF0000");
+
+                    }
+
+                    else if (response = "Deleteexception") {
+
+                        $("#messageshow").html('Something Wont Wrong');
+                        $("#messageshow").css("color", "#FFFF00");
+
+                    }
+
+                    else {
+                        $("#messageshow").html('Something Wont Wrong');
+                        $("#messageshow").css("color", "#FFFF00");
+                    }
+                }
+                else {
+                    $("#messageshow").html('NetWork Problems');
+                    $("#messageshow").css("color", "#8B4513");
+
+                }
+
+            }
+
+        });
+    }
+</script>
+

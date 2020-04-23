@@ -1,0 +1,627 @@
+﻿@model IEnumerable<Music_Library_System.Models.RentData>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+        }
+
+    #myInput {
+        box-sizing: border-box;
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+        #myInput:focus {
+            outline: 3px solid #ddd;
+        }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+
+<div class="container table-responsive">
+    <h2>Rent Data</h2>
+
+    @*---------------------------------------------------------------------------------------*@
+    <!-- Trigger the modal with a button -->
+    @*@<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myaddmediaModal">Add New Customer</button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="myaddmediaModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Media</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="">
+
+                        <div class="form-group row">
+                            <label for="authorname" class="col-sm-2 col-form-label">AuthorName</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" class="form-control" id="authorname" placeholder="authorname">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="categoryname" class="col-sm-2 col-form-label">CategoryName</label>
+                            <div class="col-sm-10">
+                                <select name="answer" id="categoryname" data-validation="required" class="form-control">
+                                    <option value=""> - - select  CategoryName - - </option>
+                                    <option>VideoCD</option>
+                                    <option>VideoDVD</option>
+                                    <option>MusicCD</option>
+                                    <option>MusicDVD</option>
+                                    <option>GameCD</option>
+                                    <option>GameDVD</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="categorynumber" class="col-sm-2 col-form-label">CategoryNumber</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-validation="custom" data-validation-regexp="^([a-zA-Z0-9]+)$" placeholder="CategoryNumber" id="categorynumber">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 col-form-label">Title</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" class="form-control" id="title" placeholder="title">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" class="form-control" id="description" placeholder="description">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-2 col-form-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="price" data-validation="number" placeholder="price">
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group row">
+                                <label for="price" class="col-sm-2 col-form-label">Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="price" data-validation="number" placeholder="price">
+                                </div>
+                            </div>*@
+
+
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                <select name="answer" id="status" data-validation="required" class="form-control">
+                                    <option value=""> - - select  Status - - </option>
+                                    <option>True</option>
+                                    <option>False</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" class="form-control btn btn-success" onclick="addmedia()" value="Submit">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    @*-----------------------------------------------------------------------------------------*@
+    <table class="table table-bordered table-hover table-striped" id="renttable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MediaId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Startdate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Enddate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MediaId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Startdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Enddate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#myupdaterentModal" onclick="updateuserrecords(@item.RentId );">Edit</button>
+
+                        <button class="btn btn-danger" onclick="Deleterecordsrent(@item.RentId );">Delete</button>
+
+                        <button class="btn btn-info" onclick="detailsuserrecords(@item.RentId );">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MediaId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Startdate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Enddate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    @*----------------------------------------- Rent table update model----------------------------------------------------------------*@
+    @*<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myaddmediaModal">Add New Customer</button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="myupdaterentModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Media</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="">
+
+                        <div class="form-group row">
+                            <label for="useridupdate" class="col-sm-2 col-form-label">User Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="custom" disabled class="form-control" id="useridupdate" placeholder="useridupdate">
+                            </div>
+                        </div>
+
+                        @*<div class="form-group row">
+                                <label for="categoryname" class="col-sm-2 col-form-label">CategoryName</label>
+                                <div class="col-sm-10">
+                                    <select name="answer" id="categoryname" data-validation="required" class="form-control">
+                                        <option value=""> - - select  CategoryName - - </option>
+                                        <option>VideoCD</option>
+                                        <option>VideoDVD</option>
+                                        <option>MusicCD</option>
+                                        <option>MusicDVD</option>
+                                        <option>GameCD</option>
+                                        <option>GameDVD</option>
+                                    </select>
+                                </div>
+                            </div>*@
+
+
+
+                        <div class="form-group row">
+                            <label for="Usernameupdate" class="col-sm-2 col-form-label">UserName</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" disabled data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" placeholder="Username" id="Usernameupdate">
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group row">
+                            <label for="mediaidupdate" class="col-sm-2 col-form-label">MediaId</label>
+
+                                @*<input type="text" data-validation="custom" data-validation-regexp="^([0-9]+)$" class="form-control" id="mediaidupdate" placeholder="mediaId" onclick="dropdown();">*@
+
+                        @*<div class="dropdown col-sm-10">
+                                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()" class="form-control">
+                                                        <a href="#about">About</a>
+
+                                                    </div>
+                            </div>
+
+
+                                            </div>*@
+
+
+                        <div class="form-group row">
+                            <label for="categoryname" class="col-sm-2 col-form-label">MediaId</label>
+                            <div class="col-sm-10">
+                                <select name="answer" id="mediaidupdate" data-validation="required" class="form-control">
+                                    <option value=""> - - select Media Id - - </option>
+
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <label for="contactupdate" class="col-sm-2 col-form-label">Contact</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="custom" data-validation-regexp="^([0-9]+)$" class="form-control" id="contactupdate" placeholder="contactupdate">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="totalamount" class="col-sm-2 col-form-label">Total Amount</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="price" data-validation="custom" data-validation-regexp="^([0-9]+)$" placeholder="totalamount">
+                            </div>
+                        </div>
+
+
+                        @*<div class="form-group row">
+                                <label for="price" class="col-sm-2 col-form-label">Price</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="price" data-validation="number" placeholder="price">
+                                </div>
+                            </div>*@
+
+
+
+
+
+                        <div class="form-group row">
+                            <label for="addressupdate" class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" placeholder="addressupdate" id="addressupdate">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                <select name="answer" id="status" data-validation="required" onclick="dropdown();" class="form-control">
+                                    <option value=""> - - select  Status - - </option>
+                                    <option>True</option>
+                                    <option>False</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" class="form-control btn btn-success" onclick="addmedia()" value="Submit">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    @*--------------------------------------------------------------------------------------------------------*@
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        viewmediarent();
+
+    });
+
+
+    function viewmediarent() {
+
+
+        var oTable = $("#renttable").dataTable();
+        oTable.fnDestroy();
+        oTable.fnClearTable();
+        $("#renttable").dataTable();
+    };
+
+</script>
+
+
+@*<script>
+        $(document).ready(function () {
+
+            document.getElementById("myDropdown").classList.toggle("show");
+        });
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        //function myFunction() {
+        //    document.getElementById("myDropdown").classList.toggle("show");
+        //}
+
+        function filterFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+    </script>*@
+
+
+
+
+<script>
+    $.validate({
+        lang: 'es',
+        modules: 'date',
+
+
+    });
+
+
+
+
+
+    //function addmedia() {
+    //    data = {};
+    //    var authorname = $("#authorname").val();
+
+    //    var categoryname = $("#categoryname").val();
+    //    var categorynumber = $("#categorynumber").val();
+    //    var title = $("#title").val();
+    //    var description = $("#description").val();
+    //    var price = $("#price").val();
+    //    var status = $("#status").val();
+    //    // var images = $("#file").val();
+
+    //    if (authorname != "" && categoryname != "") {
+    //        alert(authorname);
+    //        data.AuthorName = authorname;
+    //        data.CategoryName = categoryname;
+    //        data.Categorynumber = categorynumber;
+    //        data.Title = title;
+    //        data.Description = description;
+    //        data.Price = price;
+    //        //   data.Image = images;
+    //        data.Media_Status = status;
+    //        alert(status);
+
+
+    //        $.ajax({
+    //            type: "Post",
+    //            url: "/Media/Create",
+
+    //            data: data,
+    //            success: function (model) {
+
+    //                alert("data insert Succefully");
+
+    //            },
+    //            Error: function (error) {
+    //                alert(error);
+    //            }
+    //        });
+
+
+    //    }
+    //    else {
+    //        alert("Required all fields");
+    //    }
+
+    //}
+
+    //-------------------------------------------------------------------------
+
+    function Deleterecordsrent(p) {
+        alert("delete" + p);
+        data = { Id: p };
+
+        alert("jfksdfjdsfhs");
+        $.ajax({
+            type: "Post",
+            url: "/RentData/Delete",
+            data: data,
+            success: function (model) {
+
+                alert(model.Name);
+
+
+
+            },
+            Error: function (error) {
+                alert(error);
+            }
+        });
+
+    };
+
+    //---------------------------------------------------------------------
+    function dropdown() {
+        alert("jkksjfkksd");
+        $.ajax({
+            type: "Post",
+            url: "/Media/dropdownlist",
+            success: function (model) {
+
+                $.each(model, function (key, value) {
+                    var drop = '<option>' + value.Id + '</option>';
+                    $("#mediaidupdate").append(drop);
+                });
+
+
+            },
+            Error: function (error) {
+                alert(error);
+            }
+        });
+
+    };
+
+
+</script>

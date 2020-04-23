@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "rentView";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid table-responsive">
+    <h2>rentView</h2>
+
+
+
+    <table class="table table-bordered table-hover table-striped" id="hiretablemedia">
+        <thead>
+            <tr>
+                <th>CustomerId</th>
+                <th>CustomerName</th>
+                <th>Quantity</th>
+                <th>TotalAmount</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>StartTime</th>
+                <th>EndTime</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tfoot>
+          
+        </tfoot>
+    </table>
+
+
+
+
+</div>
+
+
+
+<script src="~/Scripts/HireMediajsfile/RentMediaUpdate.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="customerdetailsmodels" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+                <h4 class="modal-title">Customer Hire Media List</h4>
+
+
+            </div>
+            <div class="modal-body">
+                @*<table>
+
+
+                    <tr>
+                        <th><h4>Id :</h4></th>
+                    </tr>
+                    <tr>
+                        <th><h4>Name :</h4></th>
+                    </tr>
+                    <tr>
+                        <th><h4>Contact :</h4></th>
+                    </tr>
+                    <tr>
+                        <th><h4>Address :</h4></th>
+                    </tr>
+                </table>*@
+                <br />
+                <table class="table table-bordered table-hover stats-table table-responsive " id="">
+                    <thead>
+                        <tr>
+
+                            <th>AuthorName</th>
+                            <th>CategoryName</th>
+                            <th>CategoryNumber</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            @*<th>Action</th>*@
+                        </tr>
+                    </thead>
+                    <tbody id="customerhireshowdetails">
+
+                    </tbody>
+                 
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    
+

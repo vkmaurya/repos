@@ -1,0 +1,98 @@
+﻿@model CAMS.Models.CommonCustomer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CommonCustomer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedById)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedById)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifyById)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifyById)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifyByDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifyByDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedById)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedById)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedByDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedByDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsValid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

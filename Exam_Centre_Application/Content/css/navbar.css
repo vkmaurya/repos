@@ -1,0 +1,25 @@
+﻿body {
+}
+
+.navbar {
+    background-color: #0033CC !important;
+}
+
+    .navbar ul li {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+
+
+
+.logo1 {
+    color: white;
+    font-size: 30px;
+    padding-left:10px;
+
+}
+
+.navright li:hover {
+    color: brown !important;
+    border-bottom: 3px solid #FF0099;
+}

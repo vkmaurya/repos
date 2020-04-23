@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "GetCustomerdate";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2 onclick="showdata();">GetCustomerdate</h2>
+
+<table class="table table-bordered table-hover table-striped" id="customerrecords">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Dob</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+
+
+<script>
+
+
+    function ToJsDate(value) {
+        if (value == null) {
+            return "";
+        }
+        else {
+            if (value != '') {
+                var pattern = /Date\(([^)]+)\)/;
+                var result = pattern.exec(value);
+                var dt = new Date(parseFloat(result[1]));
+                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+            }
+            else {
+                return "";
+            }
+        }
+
+    }
+
+
+
+    $(document).ready(function () {
+
+        showdata();
+    });
+
+    function showdata() {
+        var oTable = $("#customerrecords").dataTable();
+        oTable.fnDestroy();
+        oTable.fnClearTable();
+
+        $("#customerrecords").dataTable({
+            "ajax": {
+                "url": "/Customer/GetCustomer",
+                "type": "Post",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "Id", "name": "Id" },
+                { "data": "Name", "name": "Name" },
+
+
+                {
+                    "data": "Dob", "name": "Dob",
+                    "render": function (data) {
+                        return ToJsDate(data);
+                    }
+                },
+
+                { "data": "Email", "name": "Email" },
+                { "data": "Address", "name": "Address" },
+                { "data": "Contact", "name": "Contact" },
+
+
+
+
+                {
+                    "data": "", "name": "", "autoWidth": true,
+                    render: function (data, type, row) {
+                        return '<button class="btn btn-info" data-toggle="modal" data-target="#MyModal" onclick=edituserdata(' + row.Id + ');>Edit</button> <button class="btn btn-danger" onclick =Delete(' + row.Id + ');> Delete</button >';
+                    }
+                }
+            ],
+            "serverSide": "true",
+            "order": [0, "asc"],
+            "processing": "true",
+
+        });
+    };
+
+</script>
+
+<script>
+
+
+    function Delete(p) {
+        data = {};
+        data.Id = p;
+
+
+              $.ajax({
+            type: "POST",
+            url: "@Url.Action("Delete", "Customer")",
+            dataType: "json",
+            data:data,
+                  success: function (data) {
+                      
+            },
+            error: function(data) {
+                alert('error');
+                console.log(data);
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,16 @@
+﻿.session
+{
+    color:white;
+    font-size:20px;
+    
+}
+
+.logout {
+    font-size: 20px;
+    
+}
+
+    .logout:hover {
+        font-size: 21px;
+        border-bottom: 2px solid aqua;
+    }

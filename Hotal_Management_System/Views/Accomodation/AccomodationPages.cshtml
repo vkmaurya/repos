@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "AccomodationPages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/cssstyleFile/Accomodationstyle.css" rel="stylesheet" />
+
+<marquee><h2>AccomodationPages</h2></marquee>
+<hr />
+@*--------------------------------------------Bootstrap Model start-----------------------------------------------------------------------------------*@
+<!-- Button trigger modal -->
+<button type="button" style="margin-bottom:7px;" class="btn btn-success accomodationmodelbutton" data-toggle="modal" data-target="#exampleModal">
+    <i class="fa fa-plus" aria-hidden="true"></i>  Add New Accomodation
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <div class="allhide">
+                    <h5 class="modal-title addheading" id="exampleModalLabel">Add New Accomodation</h5>
+                    <h5 class="modal-title updateheading" id="exampleModalLabel">Update Accomodation</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color:red" onclick="accomodationreset();">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <div class="iddiv" hidden>
+                        <input class="form-control" id="accomodationid" />
+
+                    </div>
+
+                    <div class="addandupdatediv allhide">
+                        <div class="form-group">
+                            <label for="AccomodationPackage">AccomodationPackage</label>
+                            <select class="form-control" id="AccomodationPackage">
+                                <option>Select Option</option>
+                            </select>
+                            <span id="msgAccomodationPackage"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="AccomodationName">AccomodationName</label>
+                            <input type="email" class="form-control" id="AccomodationName" placeholder="Enter Accomodation Name">
+                            <span id="msgAccomodationName"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Description">Description</label>
+                            <textarea class="form-control" id="Description" rows="2" placeholder="Enter Accomodation Description"></textarea>
+                            <span id="msgDescription"></span>
+                        </div>
+                    </div>
+
+                    @*---------------------------Add Success-status-------------------------------------------*@
+                    <div class="accomodationprocess">
+                        <div class="text-center">
+                            <img width="200" src="~/images/spinner-gif-17.gif" />
+                            <h2 style="color:forestgreen">processing...</h2>
+                        </div>
+                    </div>
+
+
+                    <div class="accomodationstatus">
+                        <div>
+                            <div class="text-center success">
+                                <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                <h2 style="color:forestgreen" class="alert alert-success" role="alert">Add Successfully...</h2>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="accomodationstatus1">
+                        <div>
+                            <div class="text-center success">
+                                <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                <h2 style="color:forestgreen" class="alert alert-success" role="alert">Update Successfully...</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                    @*------------------------------------Delete this records------------------------------------------------*@
+                    <div class="accomodationstatus2">
+                        <div class="accomodationstatus2">
+                            <div class="text-center success">
+                                <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                <h2 style="color:forestgreen" class="alert alert-success" role="alert">Delete Successfully...</h2>
+
+                               
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @*---------------------------Add Success--End------------------------------------------*@
+
+                    <div class="deletedive">
+                        <div><h4 class="alert alert-success" role="alert">Do you wonts to delete this records</h4></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="addandupdatediv allhide">
+                    <button type="button" class="btn btn-success" onclick="Addaccomodation();">SUBMIT</button>
+                    <button type="button" class="btn btn-warning" onclick="accomodationreset();">RESET</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="accomodationreset();">CLOSE</button>
+                </div>
+
+                <div class="deletedive">
+                    <button type="button" class="btn btn-success" onclick="deleteAccomodationconfirm();">Yes</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="accomodationreset();">No</button>
+                </div>
+             
+
+            </div>
+        </div>
+    </div>
+</div>
+@*--------------------------------------------Bootstrap Model End-------------------------------------------------------------------------------------*@
+
+
+<div class="container-fluid table-responsive">
+    <div>
+        <table class="table table-bordered table-hover text-center" id="accomodationtable">
+            <thead>
+                <tr>
+                    <th>AccomodationName</th>
+                    <th>Description</th>
+                    <th>AccomodationPackage</th>
+                    <th>Acction</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jsfile/Accomodationjqueryfile.js"></script>

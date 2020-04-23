@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<link href="~/Content/css/loginpage.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<div class="">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <div class="text">
+                <br />
+                <div class="logindiv">
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" placeholder="Enter Username">
+                            <span id="messageemail"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">PASSWORD</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" placeholder=" Enter Password">
+                            <span id="messagepassword"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <input type="submit" class="form-control btn btn-success" value="SUBMIT" onclick="login();">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+
+                            <input type="submit" class="form-control btn btn-info" data-toggle="modal" data-target="#myModal" value="FORGATE PASSWORD">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Trigger the modal with a button -->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="color:red;height:20px;" onclick="reset();">&times;</button>
+                <h4 class="modal-title">Please Enter valid Email</h4>
+            </div>
+            <div class="modal-body">
+                @*---------------------------------------------------------------------------------*@
+                <div class="form-group row otpsend">
+                    <label for="inputPassword" class="col-sm-2 col-form-label emailsendotp">Email</label>
+                    <div class="col-sm-10">
+                        <span id="emailvalidation"></span>
+                        <span id="emaisend" style="height:25px;text-align:center"></span>
+                        <select id="emaildropdownlist" class="form-control emailsendotp" data-placeholder="Choose a Email..."></select>
+                    </div>
+                </div>
+
+                <div class="form-group row otpconfirm">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Enter OTP</label>
+                    <div class="col-sm-10">
+
+                        <input type="number" class="form-control" placeholder="PLEASE ENTER SIX DIGITS NUMBER" id="otp" />
+                        <span id="emailvalidation"></span>
+                    </div>
+                </div>
+                @*---------------------------------------------------------------------------------------------*@
+
+                <div class="form-group row passworddive">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="otpid"  class="hidden" />
+                        <input type="number" class="form-control" placeholder="enter new password" id="npassword" />
+                        <span id="messagenpassword"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row passworddive">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-10">
+
+                        <input type="number" class="form-control" placeholder="please enter confirm password" id="cpassword" />
+                        <span id="messagenpassword"></span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success  passworddive" onclick="password();">Password</button>
+                <button type="button" class="btn btn-success  otpconfirm" onclick="confirmotp();">Formate</button>
+                <button type="button" id="a" class="btn btn-success otpsend" onclick="otpsend();">Submit</button>
+                <button type="button" id="b" class="btn btn-warning" onclick="reset();">Reset</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="reset();">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/js/login.js"></script>
+
+<script>
+    
+    function confirmotp() {
+
+        $(".otpconfirm").hide()
+        $("#emaisend").html("Please Waite Some moment...");
+        $("#emaisend").css("color", "green");
+        data = {};
+        var otp = $("#otp").val();
+        data.Email = otp;
+        $.ajax({
+            type: "POST",
+            url: "/Student/virifyemailotp", 
+            data: data,
+            success: function (response) {
+                if (response != null) {
+                    if (response=="invalidotp") {
+                        alert("invalid otp enter valid otp");
+                    }
+                    else if (response != null) {
+                        $("#otpid").val(response);
+                        $(".passworddive").show();
+                    }
+                    else {
+                        alert("invalid otp enter valid otp");
+                    }
+                   
+                }
+               
+                else {
+
+                    alert("invalid otp enter valid otp");
+                }
+        
+            }
+
+        });
+    }
+
+    function password() {
+   
+        data = {};
+        //var newpassword = $("#npassword").val();
+        var cpassword = $("#cpassword").val();
+        var id = $("#otpid").val();
+        alert(cpassword);
+        data.Id = id;
+        data.Password = cpassword;
+        
+
+        $.ajax({
+            type: "POST",
+            url: "/Student/virifyotp",
+            data: data,
+            success: function (response) {
+
+                if (response != null) {
+                    if (response == "updaterecords") {
+                        $("#myModal").modal("hide");
+                       
+                        window.location = "/Home/Contact/";
+                        alert("Password UpdateSuccefully");
+                    }
+                    else if (response == "notupdate") {
+                        alert("Password NotChange");
+                    }
+                    else {
+                        alert("Server Errors");
+                    }
+
+                }
+                else {
+
+                }
+
+            }
+        });        
+    }
+
+</script>

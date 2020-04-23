@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "CourseInformation";
+}
+
+<h2>CourseInformation</h2>
+
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>CoursesName</th>
+            <th>CoursePrice</th>
+            <th>CorsesDuration</th>
+        </tr>
+    </thead>
+    <tbody id="allrecordstable" style="color:red">
+
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+
+            $.ajax({    //create an ajax request to display.php
+                type: "GET",
+                url: "/CourseInformation/getallrecords",
+                data: "{}",
+                dataType: "JSON",   //expect html to be returned
+                success: function (response) {
+                    $.each(response, function (index, result) {
+
+                        $("#allrecordstable").append("<tr><td>" + result.CourseName + "</td><td>" + result.CoursePrice + "</td><td>" + result.CourseDuration + "</td></tr>");
+                    });
+                    z
+                }
+
+            });
+
+    });
+</script>
+

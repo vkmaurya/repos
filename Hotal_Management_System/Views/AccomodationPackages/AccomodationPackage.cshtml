@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "AccomodationPackage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/cssstyleFile/Accomodationpackages.css" rel="stylesheet" />
+
+
+<marquee><h2>AccomodationPackage</h2></marquee>
+
+<hr />
+
+@*//-----------------------------------------model div----------------------------------------------------------------------*@
+<div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success accomodationpackages" style="margin-bottom:5px;" data-toggle="modal" data-target="#AccomodationPackagemodel"><i class="fa fa-plus" aria-hidden="true"></i> Add New AccomodationPackage</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="AccomodationPackagemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title addandupdate deletehide" id="exampleModalLabel">Add New AccomodationPackage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color:red" onclick="resetAccomodationpackages();">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                   
+
+
+                    <div class="" hidden>
+                        <input class="form-control" id="accomodationpackagesid" />
+                    </div>
+
+                    <div class="addandupdate">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Accomodation Types</label>
+                            <select class="form-control ui-select" id="accomodationType">
+                                <option>Select option</option>
+                            </select>
+                            <span id="messageaccomodationType"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nameofpackage">Name Of Package</label>
+                            <input type="text" class="form-control" id="nameofpackage" placeholder="Name Of Package">
+                            <span id="messagenameofpackage"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="noofroom">Number  Of Room</label>
+                            <input type="number" class="form-control" id="noofroom" placeholder="Number  Of Room">
+                            <span id="messagenoofroom"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="feepernight">FeesPer Night</label>
+                            <input type="number" class="form-control" id="feepernight" placeholder="Fees Per Night">
+                            <span id="messagefeepernight"></span>
+                        </div>
+                    </div>
+
+                    <dib class="process">
+                        <div>
+                            <div class="text-center">
+                                <img width="200" src="~/images/spinner-gif-17.gif" />
+                                <h2 style="color:forestgreen">processing...</h2>
+                            </div>
+
+                        </div>
+                    </dib>
+
+                    <dib class="success deletehide">
+                        <div>
+                            <div class="text-center success">
+                                <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                <h2 style="color:forestgreen">Add Successfully...</h2>
+                            </div>
+
+                        </div>
+                    </dib>
+
+                    <dib class="success1 deletehide">
+                        <div>
+                            <div class="text-center success1">
+                                <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                <h2 style="color:forestgreen">Update Successfully...</h2>
+                            </div>
+
+                        </div>
+                    </dib>
+
+
+                    <div class="deletediv">
+                        <div>
+                            <h4>Dou You Wonts Deleteted this records </h4>
+                        </div>
+                    </div>
+
+
+
+                    <dib class="deletedivprocess">
+                        <div>
+                            <div class="text-center">
+                                <img width="200" src="~/images/spinner-gif-17.gif" />
+                                <h2 style="color:forestgreen">processing...</h2>
+                            </div>
+
+                        </div>
+                    </dib>
+                    <dib class="deletedsuccess">
+                        <div>
+                            <div class="text-center">
+                                <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                <h2 style="color:forestgreen">Delete Successfully...</h2>
+                            </div>
+
+                        </div>
+                    </dib>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="addandupdate">
+                        <div class="deletehide">
+                            <button type="button" class="btn btn-success" onclick="createandupdate();">Submit</button>
+                            <button type="button" class="btn btn-warning" onclick="resetAccomodationpackages();">Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetAccomodationpackages();">Close</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="deletediv">
+                            <button type="button" class="btn btn-warning" onclick="deleteaccomodationrecordsconfirm();">Yes</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetAccomodationpackages();">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid table-responsive">
+    <div>
+        <table class="table table-bordered text-center " id="accomodationpackagetable">
+            <thead style="background-color:cornflowerblue;color:white">
+                <tr>
+                    <th>ACCOMODATIONTYPE</th>
+                    <th>NAME OF PACKAGE</th>
+                    <th>NO OF ROOM</th>
+                    <th>FREEPER NIGHT</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jsfile/Accomodationpackages.js"></script>
+

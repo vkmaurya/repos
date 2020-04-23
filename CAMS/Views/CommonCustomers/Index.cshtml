@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CAMS.Models.CommonCustomer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+       
+        @*<th>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </th>*@
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+       
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IsValid)
+        </td>*@
+        <td>
+            @Html.ActionLink("AddProduct", "Create", "Products", new { CustomerId = item.CustomerId},new {@class="btn btn-info" }) |
+            @Html.ActionLink("Details", "Details", "Products", new { CustomerId = item.CustomerId }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-info" })
+        </td>
+    </tr>
+}
+
+</table>

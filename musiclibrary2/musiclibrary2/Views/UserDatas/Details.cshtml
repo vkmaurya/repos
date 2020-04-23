@@ -1,0 +1,146 @@
+﻿@model musiclibrary2.Models.UserData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pincode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pincode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsValid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsValid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roll)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roll)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifyBy_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifyBy_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifyBy_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifyBy_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

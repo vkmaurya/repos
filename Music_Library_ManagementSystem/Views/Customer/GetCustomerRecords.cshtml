@@ -1,0 +1,295 @@
+﻿@*@model IEnumerable<Music_Library_ManagementSystem.Models.Customer>*@
+
+@{
+    ViewBag.Title = "GetCustomerRecords";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid table-responsive">
+
+    <h2>GetCustomerRecords</h2>
+    @*-----------------------------------------------------------------------------------------------------------*@
+    <button type="button" class="btn btn-success btn-lg" style="margin-bottom:10px;" data-toggle="modal" data-target="#mycustomerModal" onclick="removeerror();"><i class="fa fa-plus" style="font-size:20px"></i> Add New Customer</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mycustomerModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Customer</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="">
+
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control a" id="name" placeholder="Enter Name" autocomplete="off">
+                            <small id="nameErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="dob">Dob</label>
+                            <input type="text" class="form-control a" id="dob" aria-describedby="dob" placeholder="dd/mm/yyyy" autocomplete="off">
+                            <small id="dobErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select name="answer" id="gender" class="form-control a" autocomplete="off">
+                                <option value=""> - - Gender - - </option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                            <small id="genderErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control a" id="email" placeholder="Enter Email" autocomplete="off">
+                            <small id="emailErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="contact">Contact</label>
+                            <input type="text" class="form-control a" id="contact" placeholder="Enter Contact" autocomplete="off">
+                            <small id="contactErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control a" id="address" placeholder="Enter Address" autocomplete="off">
+                            <small id="addressErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="membership">MemberShip</label>
+                            <select name="membership" id="membership" class="form-control a" autocomplete="off">
+                                <option value=""> - - Membership - - </option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                            <small id="membershipErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="name">Password</label>
+                            <input type="text" class="form-control a" id="password" placeholder="Enter Password" autocomplete="off">
+                            <small id="passwordErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="submit"></label>
+                            <input type="submit" class="form-control btn btn-success" value="Submit" onclick="customerregistration();">
+                        </div>
+
+
+                    </div>
+                </div>
+                <script src="~/Scripts/jqueryfile/CustomerformValidation.js"></script>
+                <script src="~/Scripts/jqueryfile/CustomerSaveRecordsajax.js"></script>
+
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-success">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+  
+
+
+    <div class="">
+        <table class="table table-bordered table-hover table-striped table-responsive table-fit" style="width:auto !important" id="customerTable">
+            <thead>
+                <tr>
+
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Dob</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Membership</th>
+                    <th>Roll</th>
+                    @*<th>IsValid</th>*@
+                    <th  class="col-lg-3">Action</th>
+
+                </tr>
+            </thead>
+
+            <tfoot>
+                @*<tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Dob</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>Membership</th>
+                    <th>Roll</th>
+                    <th>IsValid</th>
+                    <th col-lg-3>Action</th>
+                </tr>*@
+            </tfoot>
+        </table>
+
+
+    </div>
+
+
+    @*--------------------------------------update records ------------------------------------------------*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="mycustomerupdateModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Customer Records</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <input class="hidden" type="text" id="customeridu" />
+
+                    <div class="form-group">
+                        <label for="nameu">Name</label>
+                        <input type="text" class="form-control" id="nameu" placeholder="Enter Name" autocomplete="off">
+                        <small id="nameuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="dobu">Dob</label>
+                        <input type="text" class="form-control" id="dobu" aria-describedby="dob" placeholder="dd/mm/yyyy" autocomplete="off">
+                        <small id="dobuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="genderu">Gender</label>
+                        <select name="answer" id="genderu" class="form-control" autocomplete="off">
+                            <option value=""> - - Gender - - </option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                        <small id="genderuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="emailu">Email</label>
+                        <input type="email" class="form-control" id="emailu" placeholder="Enter Email" autocomplete="off">
+                        <small id="emailuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="contactu">Contact</label>
+                        <input type="text" class="form-control" id="contactu" placeholder="Enter Contact" autocomplete="off">
+                        <small id="contactuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="addressu">Address</label>
+                        <input type="text" class="form-control" id="addressu" placeholder="Enter Address" autocomplete="off">
+                        <small id="addressuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="membershipu">MemberShip</label>
+                        <select name="membership" id="membershipu" class="form-control" autocomplete="off">
+                            <option value=""> - - Membership - - </option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                        <small id="membershipuErrerMessage" class="form-text"></small>
+                    </div>
+
+
+                    @*<div class="form-group">
+                        <label for="nameu">Password</label>
+                        <input type="text" class="form-control" id="passwordu" placeholder="Enter Password" autocomplete="off">
+                        <small id="passworduErrerMessage" class="form-text"></small>
+                    </div>*@
+
+
+                    <div class="form-group">
+                        <label for="submit"></label>
+                        <input type="submit" class="form-control btn btn-success" value="Submit" onclick="customerupdaterecordsvalidation();">
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-success">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="~/Scripts/jqueryfile/getcustomerdata.js"></script>
+        <script src="~/Scripts/jqueryfile/customerupdaterecordsvalidation.js"></script>
+        <script src="~/Scripts/jqueryfile/customerupdaterecords.js"></script>
+        <script src="~/Scripts/jqueryfile/SearchCustomerRecords.js"></script>
+
+
+    </div>
+    @*<link href="https://cdn.datatables.net/autofill/2.3.4/css/autoFill.dataTables.min.css" />
+ 
+
+
+    <script src="https://cdn.datatables.net/autofill/2.3.4/js/dataTables.autoFill.min.js"></script>*@
+
+
+    @*--------------------------------------------------------------------------------------*@
+</div>
+
+
+@*---------------------------------------------------------------------------------------------------*@
+<div class="modal fade" id="myinsersuccessfillyModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@*----------------------------------------------------------------------------------------*@

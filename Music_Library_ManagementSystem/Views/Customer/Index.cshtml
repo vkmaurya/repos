@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function() {
+            $("#dob").datepicker();
+        });
+</script>*@
+
+
+<h2>Index</h2>
+
+
+<div class="">
+
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control a" id="name" placeholder="Enter Name" autocomplete="off">
+        <small id="nameErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="dob">Dob</label>
+        <input type="text" class="form-control a" id="dob" aria-describedby="dob" placeholder="dd/mm/yyyy" autocomplete="off">
+        <small id="dobErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <select name="answer" id="gender" class="form-control a" autocomplete="off">
+            <option value=""> - - Gender - - </option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+        <small id="genderErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control a" id="email" placeholder="Enter Email" autocomplete="off">
+        <small id="emailErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="contact">Contact</label>
+        <input type="text" class="form-control a" id="contact" placeholder="Enter Contact" autocomplete="off">
+        <small id="contactErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control a" id="address" placeholder="Enter Address" autocomplete="off">
+        <small id="addressErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="membership">MemberShip</label>
+        <select name="membership" id="membership" class="form-control a" autocomplete="off">
+            <option value=""> - - Membership - - </option>
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+        <small id="membershipErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="name">Password</label>
+        <input type="text" class="form-control a" id="password" placeholder="Enter Password" autocomplete="off">
+        <small id="passwordErrerMessage" class="form-text"></small>
+    </div>
+
+
+    <div class="form-group">
+        <label for="submit"></label>
+        <input type="submit" class="form-control btn btn-success" value="Submit" onclick="customerregistration();">
+    </div>
+
+
+</div>
+
+<script src="~/Scripts/jqueryfile/CustomerformValidation.js"></script>
+<script src="~/Scripts/jqueryfile/CustomerSaveRecordsajax.js"></script>
+
+
+

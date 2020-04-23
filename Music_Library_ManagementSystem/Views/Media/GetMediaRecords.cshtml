@@ -1,0 +1,288 @@
+﻿@model IEnumerable<Music_Library_ManagementSystem.Models.Mediadata>
+
+@{
+    ViewBag.Title = "GetMediaRecords";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid table-responsive">
+    <h2>AllMedia Records</h2>
+    <style>
+        table#customerTable {
+            width: auto !important;
+        }
+    </style>
+    @*------------------------------------------------------------------------------------------------*@
+    <button type="button" class="btn btn-success btn-lg" style="margin-bottom:10px;" data-toggle="modal" data-target="#mymediaModal"><i class="fa fa-plus" style="font-size:20px"></i> Add New Media</button>
+    <br />
+    <!-- Modal -->
+    <div class="modal fade" id="mymediaModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Media</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="">
+
+
+                        <div class="form-group">
+                            <label for="authorname">AuthorName</label>
+                            <input type="text" class="form-control m" id="authorname" placeholder="Enter Author Name" autocomplete="off">
+                            <small id="authornameErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        @*<div class="form-group">
+                                <label for="categoryname">CategoryName</label>
+                                <input type="text" class="form-control m" id="categoryname" aria-describedby="categoryname" placeholder="categoryname" autocomplete="off">
+                                <small id="dobErrerMessage" class="form-text"></small>
+                            </div>*@
+
+
+                        <div class="form-group">
+                            <label for="categoryname">CategoryName</label>
+                            <select name="answer" id="categoryname" class="form-control m" autocomplete="off">
+                                <option value=""> - - Select - - </option>
+                                <option>VideoCD</option>
+                                <option>VideoDVD</option>
+                                <option>MusicCD</option>
+                                <option>MusicDVD</option>
+                                <option>GameCD</option>
+                                <option>GameDVD</option>
+                            </select>
+                            <small id="categorynameErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="categorynumber">CategoryNumber</label>
+                            <input type="text" class="form-control m" id="categorynumber" placeholder="Enter categorynumber" autocomplete="off">
+                            <small id="categorynumberErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control m" id="title" placeholder="Enter Title" autocomplete="off">
+                            <small id="titleErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control m" id="description" placeholder="Enter description" autocomplete="off">
+                            <small id="descriptionErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="Price">Price</label>
+                            <input type="text" class="form-control m" id="price" placeholder="Enter price" autocomplete="off">
+                            <small id="priceErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        @*<div class="form-group">
+                            <label for="mediastatus">MediaStatus</label>
+                            <select name="answer" id="mediastatus" class="form-control m" autocomplete="off">
+                                <option value=""> - - Status - - </option>
+                                <option>True</option>
+                                <option>False</option>
+
+                            </select>
+                            <small id="mediastatusErrerMessage" class="form-text"></small>
+                        </div>*@
+
+
+                        <div class="form-group">
+                            <label for="submit"></label>
+                            <input type="submit" class="form-control btn btn-success" value="Submit" onclick="addmedia();">
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <script src="~/Scripts/mediaFile/MediaValidation.js"></script>
+                <script src="~/Scripts/mediaFile/MediaSaveRecords.js"></script>
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-success">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    @*------------------------------------------------------------------------------------------------*@
+
+
+    <div class="">
+        <table class="table table-bordered table-hover table-striped" id="Tableshow">
+            <thead>
+                <tr>
+
+                    <th>AuthorName</th>
+                    <th>CategoryName</th>
+                    <th>CategoryNumber</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+
+                    @*<th>Media_Status</th>*@
+
+
+                </tr>
+            </thead>
+
+            <tfoot>
+              
+            </tfoot>
+        </table>
+
+
+    </div>
+
+    @*-------------------------------- update media ------------------------------------*@
+
+    <div class="modal fade" id="myupdatemediaModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Media</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="">
+
+
+                        <input class="hidden" id="uid" value="" />
+
+                        <div class="form-group">
+                            <label for="uauthorname">AuthorName</label>
+                            <input type="text" class="form-control m" id="uauthorname" placeholder="Enter Author Name" autocomplete="off">
+                            <small id="uauthornameErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        @*<div class="form-group">
+                                <label for="categoryname">CategoryName</label>
+                                <input type="text" class="form-control m" id="categoryname" aria-describedby="categoryname" placeholder="categoryname" autocomplete="off">
+                                <small id="dobErrerMessage" class="form-text"></small>
+                            </div>*@
+
+
+                        <div class="form-group">
+                            <label for="ucategoryname">CategoryName</label>
+                            <select name="answer" id="ucategoryname" class="form-control m" autocomplete="off">
+                                <option value=""> - - Select - - </option>
+                                <option>VideoCD</option>
+                                <option>VideoDVD</option>
+                                <option>MusicCD</option>
+                                <option>MusicDVD</option>
+                                <option>GameCD</option>
+                                <option>GameDVD</option>
+                            </select>
+                            <small id="ucategorynameErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="ucategorynumber">CategoryNumber</label>
+                            <input type="text" class="form-control m" id="ucategorynumber" placeholder="Enter categorynumber" autocomplete="off">
+                            <small id="ucategorynumberErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="utitle">Title</label>
+                            <input type="text" class="form-control m" id="utitle" placeholder="Enter Title" autocomplete="off">
+                            <small id="utitleErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="udescription">Description</label>
+                            <input type="text" class="form-control m" id="udescription" placeholder="Enter description" autocomplete="off">
+                            <small id="udescriptionErrerMessage" class="form-text"></small>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="uPrice">Price</label>
+                            <input type="text" class="form-control m" id="uprice" placeholder="Enter price" autocomplete="off">
+                            <small id="upriceErrerMessage" class="form-text"></small>
+                        </div>
+
+
+                        @*<div class="form-group">
+                            <label for="umediastatus">MediaStatus</label>
+                            <select name="umediastatus" id="umediastatus" class="form-control m" autocomplete="off">
+                                <option value=""> - - Status - - </option>
+                                <option>True</option>
+                                <option>False</option>
+
+                            </select>
+                            <small id="umediastatusErrerMessage" class="form-text"></small>
+                        </div>*@
+
+
+                        <div class="form-group">
+                            <label for="submit"></label>
+                            <input type="submit" class="form-control btn btn-success" value="Submit" onclick="updatemedia();">
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <script src="~/Scripts/mediaFile/SearchMedia.js"></script>
+                <script src="~/Scripts/mediaFile/MediaupdateValidation.js"></script>
+                <script src="~/Scripts/mediaFile/MediaUpdaterecordssave.js"></script>
+
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-success">Reset</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    @*-----------------------------------------------------------------------------------*@
+</div>
+
+
+
+
+
+
+<script src="~/Scripts/mediaFile/GetMediaRecords.js"></script>

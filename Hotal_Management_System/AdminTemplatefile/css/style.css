@@ -1,0 +1,37 @@
+﻿body {
+}
+
+.logout {
+    margin-right: 15px;
+    border-radius: 25px;
+}
+
+    .logout:hover {
+        background-color: #abc4e7;
+    }
+
+.blinking {
+    animation: blinkingText 1.2s infinite;
+}
+
+@keyframes blinkingText {
+    0% {
+        color: #000;
+    }
+
+    49% {
+        color: #000;
+    }
+
+    60% {
+        color: transparent;
+    }
+
+    99% {
+        color: transparent;
+    }
+
+    100% {
+        color: #000;
+    }
+}

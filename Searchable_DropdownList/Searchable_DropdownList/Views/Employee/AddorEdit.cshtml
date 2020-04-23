@@ -1,0 +1,42 @@
+﻿@model  Searchable_DropdownList.Models.SelectedEmployee
+@{
+    ViewBag.Title = "AddorEdit";
+}
+
+<h2>Searchable and MultiSelectmvc Dropdownlist</h2>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            <label>Select Employee</label>
+            @*@*Normal dropdown
+            @Html.DropDownListFor(model => model.SelectedEmployeeIds,new SelectList(Model.EmployeeCollection,"EmployeeId","Name"),new {id="narmaldropdown", @class = "form-control" })*@
+       
+ @Html.ListBoxFor(model=>model.selectIdArray, new MultiSelectList(Model.EmployeeCollection, "EmployeeId", "Name"),new {id="multiselectdropdownlist",multiple="multiple"})
+
+        <input type="submit" name="name" value="Submit" />
+        </div>
+    </div>
+}
+
+@section scripts{
+    
+    <script>
+        $(function () {
+            //$("#narmaldropdown").chosen({
+            //    disable_search_threshold : 5
+            //});
+
+            $("#multiselectdropdownlist").chosen({
+                width: "100%"
+            });
+            
+
+        });
+
+    </script>
+    
+    }

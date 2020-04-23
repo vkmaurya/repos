@@ -1,0 +1,341 @@
+﻿@model IEnumerable<Music_Library_System.Models.Mediadata>
+
+@{
+    ViewBag.Title = "Media";
+}
+
+<h2>Media</h2>
+@*----------------------------------------------------------------------------*@
+<div>
+    <div class="col-xs-2 form-group" style="margin-left:400px;">
+        <input class="form-control" id="dayNumber" type="number" placeholder="hire some days">
+    </div>
+    <button class="btn btn-info" data-toggle="modal" data-target="#Modal" onclick="getmediaId()">Media Hire</button>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Address Details</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-hover" id="locationtable" border='1'>
+                    <thead>
+                        <tr>
+                            <td> </td>
+                            <th>Id</th>
+                            <th>AuthorName</th>
+                            <th>CategoryName</th>
+                            <th>CategoryNumber</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="locationtable1">
+
+                    </tbody>
+                    <tfoot>
+                        @*<tr>
+
+                                <td>Membership Discount: </td>
+                                <td> </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>*@
+                        <tr>
+
+                            <td>Total Amount : </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <input class="form-control" disabled id="totalAmount" type="text">
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+
+
+                <br />
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="address" placeholder="address" required>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group row">
+                    <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="contact" placeholder="contact" required>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="AddMediaRent()">Submit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@*-----------------------------------------------------------------------------*@
+
+<table class="table table-bordered table-hover table-striped" id="mediasearch">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorynumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categorynumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox" id="mediaid" value="@item.Id" />
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorynumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+
+    </tfoot>
+</table>
+<script>
+
+
+
+    var mediaid = {};
+    var totalAmount = null;
+
+    var p = new Array();
+
+
+    function getmediaId() {
+
+ 
+
+
+        // var i = 0;
+
+        $("#mediasearch").find("input:checked").each(function () {
+            //p[i] = $(this).val();
+            //i++;
+            p.push($(this).val())
+        });
+        
+        data = { Id: p };
+
+        ids = data;
+
+
+        $.ajax({
+            type: "Post",
+            url: "/Home/getmediaId",
+            data: data,
+
+
+
+            success: function (success) {
+
+
+                totalAmount = null;
+
+
+                $("#locationtable1 tbody tr").remove();
+
+        
+                $.each(success, function (key, value) {
+
+                    $('#locationtable1').append('<tr><td></td><td>' + value.Id + '</td><td>' + value.AuthorName + '</td><td>' + value.CategoryName + '</td><td>' + value.Categorynumber + '</td><td>' + value.Title + '</td><td>' + value.Description + '</td><td>' + value.Price + '</td></tr>');
+
+                    totalAmount = totalAmount + value.Price;
+
+                });
+
+
+                $("#totalAmount").val(totalAmount);
+
+
+
+            }
+
+        })
+
+    }
+
+
+
+    //-----------------------------------------------------------------------------------------
+
+    function AddMediaRent() {
+        alert();
+        //var arr = new Array();
+        //var data = {};
+
+        //for (var i = 0; i < p.length; i++) {
+
+        //    data.mediaid = p;
+
+        //    var totalprice = $("#totalAmount").val();
+        //    var address = $("#address").val();
+        //    var contact = $("#contact").val();
+        //    var userid = 1;
+        //    var username = "vikash";
+
+
+        //    data.UserId = userid;
+        //    data.UserName = username;
+        //    data.TotalAmount = totalprice;
+        //    data.Address = address;
+        //    data.Contact = contact;
+
+        //    arr.push(data);
+        //    var arrobject = { 'objrent': arr };
+        //    console.log(arrobject);
+
+
+        //}
+
+
+
+        data.mediaid = p;
+        alert(p);
+        var totalprice = $("#totalAmount").val();
+        var address = $("#address").val();
+        var contact = $("#contact").val();
+        var userid = 1;
+        var username = "vikash";
+
+
+        data.UserId = userid;
+        data.UserName = username;
+        data.TotalAmount = totalprice;
+        data.Address = address;
+        data.Contact = contact;
+
+        alert("iiiiiiiiiiiiiiiiiiii");
+
+        $.ajax({
+            //async: true,
+            type: "Post",
+            //dataType: "Json",
+            url: "/Home/hirerentmedia",
+          //  data: arrobject,
+            data: data,
+            success: function (model) {
+
+                alert('media hire successfully');
+
+
+
+
+            },
+
+
+            error: function (Error) {
+
+                //var message = 'plase select media ';
+                //$('#errormessage').append(message);
+                alert('plase select media');
+            }
+
+
+        });
+
+
+    }
+
+
+
+</script>

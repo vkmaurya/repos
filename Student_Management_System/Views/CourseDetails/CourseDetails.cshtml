@@ -1,0 +1,557 @@
+﻿@model IEnumerable<Student_Management_System.Models.CoursesDetail>
+
+@{
+    ViewBag.Title = "CourseDetails";
+}
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="container">
+    <h2>CourseDetails</h2>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-success" style="margin-bottom:10px" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i>  Add New CourseDetails</button>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" style="color:red" onclick="reset();">&times;</button>
+                            <h4 class="modal-title">Add New CourseDetails</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Courses</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="coursesid"></select>
+                                    <span id="coursesidvalidation"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="amount" class="col-sm-2 col-form-label">Course Amount</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="amount" placeholder="Enter Courses Amount">
+                                    <span id="amountvalidation"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="douration" class="col-sm-2 col-form-label">Courses Duration</label>
+                                <div class="col-sm-10">
+                                    <select id="duration" class="form-control">
+                                        <option>Select Option</option>
+                                        <option value="1 Months">1 Months</option>
+                                        <option value="2 Months">2 Months</option>
+                                        <option value="3 Months">3 Months</option>
+                                        <option value="4 Months">4 Months</option>
+                                        <option value="5 Months">5 Months</option>
+                                        <option value="6 Months">6 Months</option>
+                                        <option value="7 Months">7 Months</option>
+                                        <option value="8 Months">8 Months</option>
+                                        <option value="9 Months">9 Months</option>
+                                        <option value="10 Months">11 Months</option>
+                                        <option value="11 Months">11 Months</option>
+                                        <option value="12 Months">12 Months</option>
+                                    </select>
+                                    <span id="durationvalidation"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="douration" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="submit" class="form-control btn btn-success" value="Submit" onclick="add();">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" onclick="reset();">Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="reset();">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <h2 style="margin-bottom:20px;"><span id="messageshow1" style="font-style:italic"></span></h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover" id="CourseDetailstable">
+        <thead>
+            <tr>
+
+                <th>CourseId</th>
+                <th>CoursePrice</th>
+                <th>CourseDuration</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="coursedetailtable1"></tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+
+    <div>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <div id="mycoursedetailsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="color:orangered" onclick="Updatereset();">&times;</button>
+                        <h4 class="modal-title">CourseDetails Update</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Courses</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="courseidup" class="hidden" />
+                                <select class="form-control" id="coursesidupdate"></select>
+                                <span id="coursesidvalidation"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="amount" class="col-sm-2 col-form-label">Course Amount</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="amountupdate" placeholder="Enter Courses Amount">
+                                <span id="amountvalidation"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="douration" class="col-sm-2 col-form-label">Courses Duration</label>
+                            <div class="col-sm-10">
+                                <select id="durationupdate" class="form-control">
+                                    <option>Select Option</option>
+                                    <option value="1 Months">1 Months</option>
+                                    <option value="2 Months">2 Months</option>
+                                    <option value="3 Months">3 Months</option>
+                                    <option value="4 Months">4 Months</option>
+                                    <option value="5 Months">5 Months</option>
+                                    <option value="6 Months">6 Months</option>
+                                    <option value="7 Months">7 Months</option>
+                                    <option value="8 Months">8 Months</option>
+                                    <option value="9 Months">9 Months</option>
+                                    <option value="10 Months">11 Months</option>
+                                    <option value="11 Months">11 Months</option>
+                                    <option value="12 Months">12 Months</option>
+                                </select>
+                                <span id="durationvalidation"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="douration" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" class="form-control btn btn-success" value="Submit" onclick="update();">
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" onclick="Updatereset();">Reset</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="Updatereset();">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <div id="myupdatedeleteModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="color:red">&times;</button>
+                        <h4 class="modal-title">Delete Records</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="hidden" id="deleteid" />
+                        <h4 style="color:blue">Do you Wont to Delete this Records</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete();">DELETE</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $("#CourseDetailstable").dataTable();
+
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        getCourses();
+    });
+
+    function getCourses() {
+        var ddlCustomers = $("#coursesid");
+        ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+        $.ajax({
+            type: "GET",
+            url: "/CourseDetails/Coursesdropdownlist",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                $.each(response, function (index, result) {
+
+                    ddlCustomers.append($("<option></option>").val(result.Id).html(result.CourseName));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    };
+
+</script>
+
+<script>
+    function add() {
+        data = {};
+
+        var coursesid = $("#coursesid").val();
+        var coursesamount = $("#amount").val();
+        var coursesduration = $("#duration").val();
+        var amountvalidation = /^[0-9]*$/;
+
+        if (coursesid == 0) {
+            $("#coursesidvalidation").html("***Required this fields");
+            $("#coursesidvalidation").css("color", "red");
+        }
+        else {
+            $("#coursesidvalidation").html("");
+        }
+
+        if (coursesamount == "") {
+            $("#amountvalidation").html("***Required this fields");
+            $("#amountvalidation").css("color", "red");
+        }
+        else if (!amountvalidation.test(coursesamount)) {
+            $("#amountvalidation").html("only Enter numeric digits Not Character");
+            $("#amountvalidation").css("color", "red");
+        }
+        else {
+            $("#amountvalidation").html("");
+        }
+
+        if (coursesduration == "Select Option") {
+            $("#durationvalidation").html("***Required this fields");
+            $("#durationvalidation").css("color", "red");
+        }
+        else {
+            $("#durationvalidation").html("");
+        }
+
+        if (coursesamount != "" && amountvalidation.test(coursesamount) == true) {
+
+            data.CourseId = coursesid;
+
+            data.CoursePrice = coursesamount;
+
+            data.CourseDuration = coursesduration;
+
+            $("#myModal").modal("hide");
+
+            $.ajax({
+                type: "POST",
+                url: "/CourseDetails/Add",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    if (response != null) {
+
+                        if (response == "success") {
+
+
+                            $("#messageshow1").html('Add Successfully');
+                            $("#messageshow1").css("color", "green");
+
+                        }
+                        else if (response == "error") {
+
+                            $("#messageshow1").html('Courses Not Add');
+                            $("#messageshow1").css("color", "#FF0000");
+
+                        }
+                        else if (response == "exception") {
+
+                            $("#messageshow1").html('SomeThing Wonts Wrong');
+                            $("#messageshow1").css("color", "#FFFF00");
+                        }
+                        else {
+                            $("#messageshow1").html('Network Problems');
+                            $("#messageshow1").css("color", "#8B4513");
+                        }
+                    }
+                    else {
+
+                        $("#messageshow1").html('Network Problems');
+                        $("#messageshow1").css("color", "#8B4513");
+                    }
+
+                }
+            });
+        }
+    };
+</script>
+<script>
+    function reset() {
+        $("#coursesidvalidation").html("");
+        $("#amountvalidation").html("");
+        $("#durationvalidation").html("");
+    }
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+        getcoursedetails();
+
+    });
+
+    function getcoursedetails() {
+
+
+        $.ajax({    //create an ajax request to display.php
+            type: "GET",
+            url: "/CourseDetails/getallcoursedetails",
+            data: "{}",
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+                $.each(response, function (index, result) {
+
+                    $("#coursedetailtable1").append("<tr><td>" + result.CourseId + "</td><td>" + result.CoursePrice + "</td><td>" + result.CourseDuration + "</td><td><button type='button' class='btn btn-primary' onclick='search(" + result.Id + ")'>UpDate</button> <button type='button' class='btn btn-danger' onclick='Delete(" + result.Id + ")' >Delete</button></td></tr>");
+                });
+
+            }
+
+        });
+    };
+</script>
+<script>
+    function search(id) {
+        data = {};
+        data.Id = id;
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "/CourseDetails/Search",
+            data: data,
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+
+                if (response != null) {
+                    $("#mycoursedetailsModal").modal("show");
+                    $("#courseidup").val(response.Id);
+                    $("#coursesidupdate").val(response.CourseId);
+                    $("#amountupdate").val(response.CoursePrice);
+                    $("#durationupdate").val(response.CourseDuration);
+                }
+
+
+            }
+
+        });
+
+    }
+</script>
+
+
+<script>
+    function update() {
+        data = {};
+        var id = $("#courseidup").val();
+        var coursesidupdate = $("#coursesidupdate").val();
+        var amountupdate = $("#amountupdate").val();
+        var durationupdate = $("#durationupdate").val();
+        data.Id = id;
+        data.CourseId = coursesidupdate;
+        data.CoursePrice = amountupdate;
+        data.CourseDuration = durationupdate;
+        $("#mycoursedetailsModal").modal("hide");
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "/CourseDetails/Update",
+            data: data,
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+
+                if (response != null) {
+                    if (response == "updatesuccess") {
+
+                        $("#messageshow1").html('Update Successfully');
+                        $("#messageshow1").css("color", "green");
+                    }
+                    else if (response == "updateerror") {
+
+                        $("#messageshow1").html('Not Update Records');
+                        $("#messageshow1").css("color", "#FF0000");
+
+                    }
+                    else if (response = "updateexception") {
+
+                        $("#messageshow1").html('Something Wont Wrong');
+                        $("#messageshow1").css("color", "#FFFF00");
+
+                    }
+                    else {
+
+                        $("#messageshow1").html('Something Wont Wrong');
+                        $("#messageshow1").css("color", "#FFFF00");
+                    }
+                }
+
+                else {
+
+                    $("#messageshow1").html('NetWork Problems');
+                    $("#messageshow1").css("color", "#8B4513");
+
+                }
+
+            }
+
+        });
+
+    }
+</script>
+
+
+
+<script>
+    function Delete(id) {
+        $("#deleteid").val(id);
+        $("#myupdatedeleteModal").modal("show");
+    }
+
+    function confirmDelete() {
+        data = {};
+        var deleteid = $("#deleteid").val();
+        data.Id = deleteid;
+        $("#myupdatedeleteModal").modal("hide");
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "/CourseDetails/Delete",
+            data: data,
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+
+                if (response != null) {
+
+                    if (response != null) {
+
+                        if (response = "Deletesuccess") {
+
+                            $("#messageshow1").html('Delete Successfully');
+                            $("#messageshow1").css("color", "green");
+
+                        }
+                        else if (response == "Deleteerror") {
+
+
+                            $("#messageshow1").html('Not Delete Records');
+                            $("#messageshow1").css("color", "#FF0000");
+
+                        }
+
+                        else if (response = "Deleteexception") {
+
+                            $("#messageshow1").html('Something Wont Wrong');
+                            $("#messageshow1").css("color", "#FFFF00");
+
+                        }
+
+                        else {
+                            $("#messageshow1").html('Something Wont Wrong');
+                            $("#messageshow1").css("color", "#FFFF00");
+                        }
+                    }
+                    else {
+                        $("#messageshow1").html('NetWork Problems');
+                        $("#messageshow1").css("color", "#8B4513");
+
+                    } 
+                }
+
+
+            }
+
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        updatecoursedropdownlist();
+    });
+
+    function updatecoursedropdownlist() {
+        var ddlCustomers = $("#coursesidupdate");
+        ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+        $.ajax({
+            type: "GET",
+            url: "/CourseDetails/Coursesdropdownlist",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                $.each(response, function (index, result) {
+
+                    ddlCustomers.append($("<option></option>").val(result.Id).html(result.CourseName));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    };
+
+</script>

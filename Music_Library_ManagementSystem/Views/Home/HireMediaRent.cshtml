@@ -1,0 +1,307 @@
+﻿@model IEnumerable<Music_Library_ManagementSystem.Models.Mediadata>
+
+@{
+    ViewBag.Title = "HireMediaRent";
+}
+
+
+
+<div class="container-fluid table-responsive" id="hiremediatabe">
+
+    <h2>HireMediaRent</h2>
+
+    <input id="membershiptype" hidden disabled value="@HttpContext.Current.Session["custmoertype"]" />
+
+
+    @*-------------------------------------------------------------------------*@
+    <div><input type="button" class="btn-primary" style="margin-left:10px;" value="order" onclick="customerorderlist('@HttpContext.Current.Session["customerid"]');" /></div>
+
+    <script src="~/Scripts/HireMediajsfile/customerhirelist.js"></script>
+
+    @*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*@
+    <div>
+        <div><label for="numberofday" style="margin-left:440px;">End Date </label></div>
+        <div class="col-xs-3 form-group" style="margin-left:400px;">
+
+            <input class="form-control" id="dayNumber" type="date" placeholder="hire some days">
+        </div>
+        <button  class="btn btn-info" @*data-toggle="modal" data-target="#Modal"*@ onclick="getmediaId()">Media Hire</button>
+    </div>
+
+
+
+
+
+    @*------------------------------------------------------------------------------------------------------*@
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="Modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Address Details</h4>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-hover" id="" border='1'>
+                        <thead>
+                            <tr>
+                                <th> </th>
+                                <th>MediaId</th>
+                                <th>AuthorName</th>
+                                <th>CategoryName</th>
+                                <th>CategoryNumber</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="locationbody"></tbody>
+                        <tfoot>
+                            <tr>
+
+                                <td>Membership Discount: </td>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>10%</td>
+                                <td><input class="form-control" disabled id="membershipdiscount" type="text"></td>
+                            </tr>
+                            <tr>
+
+                                <td>Media Discount: </td>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td id="3CDdiscount">30%</td>
+                                <td><input class="form-control" disabled id="mediadiscount" type="text"></td>
+                            </tr>
+                            <tr>
+
+                                <td>Security charges: </td>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td id=""></td>
+                                <td><input class="form-control" disabled id="securitycharge" type="text"></td>
+                            </tr>
+                            <tr>
+
+                                <td>Media Rent: </td>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td id=""></td>
+                                <td><input class="form-control" disabled id="mediarent" type="text"></td>
+                            </tr>
+                            <tr>
+
+                                <td>Total Amount : </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input class="form-control" disabled id="totalAmount" type="text">
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
+
+                    <br />
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control d" id="address" placeholder="address" required>
+                            <span id="validaddressmessage"></span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group row">
+                        <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control d" id="contact" placeholder="contact" required>
+                            <span id="contactErrerMess"></span>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick='AddMediaRent()'>Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    @*-------------------------------------------------------------------------*@
+    <table class="table table-bordered table-hover table-striped" id="hirerenttable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AuthorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AuthorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                    <td>
+                        <div class="form-check">
+                            <input type="checkbox" class="check" id="mediaid_@item.Id" value="@item.Id" />
+                            <span id="messagecheckbox_@item.Id"></span>
+                            <span id="messageavailable_@item.Id"></span>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+
+
+
+    @*--------------------------------------------------------------------------------------------------------------------------*@
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="customerorderdetails" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+                    <h4 class="modal-title">Customer Hire Media List</h4>
+
+
+                </div>
+                <div class="modal-body">
+                    @*<table>
+
+
+                            <tr>
+                                <th><h4>Id :</h4></th>
+                            </tr>
+                            <tr>
+                                <th><h4>Name :</h4></th>
+                            </tr>
+                            <tr>
+                                <th><h4>Contact :</h4></th>
+                            </tr>
+                            <tr>
+                                <th><h4>Address :</h4></th>
+                            </tr>
+                        </table>*@
+                    <br />
+                    <table class="table table-bordered table-hover stats-table table-responsive " id="">
+                        <thead>
+                            <tr>
+
+                                <th>AuthorName</th>
+                                <th>CategoryName</th>
+                                <th>CategoryNumber</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerorderlist"></tbody>
+                      
+                    </table>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    @*--------------------------------------------------------------------------------------------------------------------------*@
+
+
+
+    <script src="~/Scripts/HireMediajsfile/startfunction.js"></script>
+
+    <script src="~/Scripts/HireMediajsfile/hiremediajs.js"></script>
+
+
+</div>
+

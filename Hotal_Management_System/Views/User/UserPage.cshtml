@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "UserPage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" />*@
+
+<h2>UserPage</h2>
+
+<hr />
+
+<div class="container-fluid">
+    <div>
+        <!-- Button trigger modal -->
+        <button type="button" style="margin-bottom:8px;" class="btn btn-success" data-toggle="modal" data-target="#userModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New User </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title addupdatediv addupdatemessage" id="exampleModalLabel">Add New User</h5>
+                        <h5 class="modal-title updatemessage" id="exampleModalLabel">Update New User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetformuser();">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div hidden>
+                            <input type="text" class="form-control" id="id" placeholder="Enter id">
+                        </div>
+
+
+
+
+                        <div class="addupdatediv">
+                            @*-----------------form upload div start--------------------------------*@
+
+                            <div class="form-group">
+                                <label for="name">NAME</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Name">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name">COUNTERY</label>
+                                <select class="form-control" id="countery">
+                                    <option>Select Countery</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>D</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name">CITY</label>
+                                <select class="form-control" id="city">
+                                    <option>Select City</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">EMAIL</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter Email">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name">DOB</label>
+                                <input type="text" class="form-control" id="dob" placeholder="Enter DOB">
+                            </div>
+
+
+
+                            <div class="form-group password">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" id="password" placeholder="Enter password">
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="name">ADDRESS</label>
+                                <textarea type="text" class="form-control" id="address" placeholder="Enter Address"></textarea>
+                            </div>
+
+
+                        </div>@*-----------------form upload div End--------------------------------*@
+
+
+                        @*--------------------------------add update status--- state--------------------------------*@
+                        <div class="userprocess">
+                            <div class="text-center">
+                                <img width="200" src="~/images/spinner-gif-17.gif" />
+                                <h2 style="color:forestgreen">processing...</h2>
+                            </div>
+                        </div>
+
+
+                        <div class="userstatus">
+                            <div>
+                                <div class="text-center success">
+                                    <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                    <h2 style="color:forestgreen" class="alert alert-success" role="alert">Add Successfully...</h2>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="userdeletestatus">
+                            <div>
+                                <div class="text-center success">
+                                    <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                    <h2 style="color:forestgreen" class="alert alert-success" role="alert">Update Successfully...</h2>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="deletestatus">
+                            <div>
+                                <div class="text-center success">
+                                    <span><i class="fa fa-check-square-o" style="color:green;font-size:200px" aria-hidden="true"></i></span>
+                                    <h2 style="color:forestgreen" class="alert alert-success" role="alert">Delete Successfully...</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                        @*--------------------------------add update status end ------------------------------------*@
+                        <div class="text-center deletemessage">
+                            <h4 style="color:forestgreen" class="alert alert-success" role="alert">do you wonts delete this records yes or no</h4>
+                        </div>
+                        @*--------------------------------Delete message---------------------------------------------------*@
+                    </div>
+                    <div class="modal-footer">
+                        <div class="addupdatediv">
+                            <button type="button" class="btn btn-success" onclick="CreateUser();"><i class="fa fa-upload" aria-hidden="true"></i> Submit</button>
+                            <button type="button" style="color:white" class="btn btn-warning" onclick="resetformuser();"><i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetformuser();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                       
+                        </div>
+                        <div class="deletemessage">
+                            <button type="button" style="color:white" class="btn btn-success" onclick="confirmdelete();"><i class="fa fa-repeat" aria-hidden="true"></i> Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetformuser();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="container-fluid table-responsive">
+        <div>
+            <table class="table table-bordered table-hover" id="usertable">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>COUNTERY</th>
+                        <th>CITY</th>
+                        <th>ADDRESS</th>
+                        <th>EMAIL</th>
+                        <th>DOB</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jsfile/User.js"></script>
+<script src="~/Scripts/ToJsDate.js"></script>
+
+@*<script>
+
+        $(document).ready(function () {
+
+            $("#countery").chosen();
+
+        });
+
+    </script>*@

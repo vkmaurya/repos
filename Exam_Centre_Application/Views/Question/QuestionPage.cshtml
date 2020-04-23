@@ -1,0 +1,541 @@
+﻿
+@{
+    ViewBag.Title = "QuestionPage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<h2>QuestionPage</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <button type="button" class="btn btn-success" style="margin-bottom:10px;" data-toggle="modal" data-target="#myModal"> <i class="fa fa-plus" aria-hidden="true"></i> Add New Question</button>
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6"><h3><span id="headdermessageshow" style="color:green"></span></h3></div>
+    </div>
+</div>
+<!-- Trigger the modal with a button -->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" style="color:cyan">Add New More Question And Answer</h4>
+                <button type="button" class="close" data-dismiss="modal" style="color:red">&times;</button>
+
+            </div>
+            <div class="modal-body">
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">ENTER QUESTION</label>
+                    <input type="text" class="form-control" id="question" placeholder="ENTER QUESTION">
+                    <span id="messagequestion"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">OPTION A</label>
+                    <input type="text" class="form-control" id="opa" placeholder="ENTER OPTION A ">
+                    <span id="messageopa"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">OPTION B</label>
+                    <input type="text" class="form-control" id="opb" placeholder="ENTER OPTION B">
+                    <span id="messageopb"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">OPTION C</label>
+                    <input type="text" class="form-control" id="opc" placeholder="ENTER OPTION C">
+                    <span id="messageopc"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">OPTION D</label>
+                    <input type="text" class="form-control" id="opd" placeholder="ENTER OPTION D">
+                    <span id="messageopd"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">CORRECT OPTION</label>
+                    <input type="text" class="form-control" id="correctoption" placeholder="ENTER CORRECT OPTION">
+                    <span id="messagecorrectoption"></span>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="submitquestion();">SUBMIT</button>
+                <button type="button" class="btn btn-warning">RESET</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div>
+    <div>
+        <table class="table table-bordered table-hover" id="auestiontable">
+            <thead>
+                <tr>
+
+                    <th>Question</th>
+                    <th>OPTION_A</th>
+                    <th>OPTION_B</th>
+                    <th>OPTION_C</th>
+                    <th>OPTION_D</th>
+                    <th>CORRECT_OP_E</th>
+                    <th>ACTION</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+
+
+<div>
+
+
+    <!-- Modal -->
+    <div id="myUpdateModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Header</h4>
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">ENTER QUESTION</label>
+                        <input type="text" hidden class="form-control" id="updateid" />
+                        <input type="text" class="form-control" id="questionu" placeholder="ENTER QUESTION">
+                        <span id="messagequestionu"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">OPTION A</label>
+                        <input type="text" class="form-control" id="opau" placeholder="ENTER OPTION A ">
+                        <span id="messageopau"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">OPTION B</label>
+                        <input type="text" class="form-control" id="opbu" placeholder="ENTER OPTION B">
+                        <span id="messageopbu"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">OPTION C</label>
+                        <input type="text" class="form-control" id="opcu" placeholder="ENTER OPTION C">
+                        <span id="messageopcu"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">OPTION D</label>
+                        <input type="text" class="form-control" id="opdu" placeholder="ENTER OPTION D">
+                        <span id="messageopdu"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">CORRECT OPTION</label>
+                        <input type="text" class="form-control" id="correctoptionu" placeholder="ENTER CORRECT OPTION">
+                        <span id="messagecorrectoptionu"></span>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="updatequestion();">SUBMIT</button>
+                    <button type="button" class="btn btn-warning">RESET</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div id="myDeleteModa" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Records</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <div class="modal-body">
+
+                    <input type="text" hidden class="form-control" id="updateiddelete" />
+                    <h3>do you wonts to delete this records</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="();">Yes</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/js/questionanswer.js"></script>
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#auestiontable").DataTable({
+
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "pageLength": 10,
+
+                "ajax": {
+                    "url": "/Question/GetRecords",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+
+                "columnDefs":
+                    [{
+                        "targets": [-1],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        "targets": [8],
+                        "searchable": false,
+                        "orderable": false
+                    },
+                    {
+                        "targets": [8],
+                        "searchable": false,
+                        "orderable": false
+                    },
+                    {
+                        "targets": [8],
+                        "searchable": false,
+                        "orderable": false
+                    }],
+
+                "columns": [
+                    { "data": "Question1", "name": "Question1", "autoWidth": true },
+                    { "data": "Opa", "name": "Opa", "autoWidth": true },
+
+                    { "data": "Opb", "name": "Opb", "autoWidth": true },
+                    { "data": "Opc", "name": "Opc", "autoWidth": true },
+                    { "data": "Opd", "name": "Opd", "autoWidth": true },
+                    { "data": "Ope", "name": "Ope", "autoWidth": true },
+
+
+                    {
+                        "render": function (data, type, full, meta) { return '<a class="btn btn-info" data-toggle="modal" data-target="#myUpdateModal" onclick="myFunction(' + full.Id + ');">Edit</a>  <a class="btn btn-danger" data-toggle="modal" data-target="#myDeleteModal" onclick="myFunctiondelete('+full.Id+');" >Delete</a>'; }
+                    }
+
+
+                ]
+
+            });
+        });
+    </script>
+
+
+    <script>
+        function myFunction(p) {
+
+            data = {};
+            data.Id = p;
+
+            $.ajax({
+                type: "POST",
+                url: "/Question/Search",
+                data: data,
+                success: function (result) {
+
+                    $("#updateid").val(result.Id);
+                    $("#questionu").val(result.Question1);
+                    $("#opau").val(result.Opa);
+                    $("#opbu").val(result.Opb);
+                    $("#opcu").val(result.Opc);
+                    $("#opdu").val(result.Opd);
+                    $("#correctoptionu").val(result.Ope);
+
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        function updatequestion() {
+
+            var question = $("#questionu").val();
+            var opa = $("#opau").val();
+            var opb = $("#opbu").val();
+            var opc = $("#opcu").val();
+            var opd = $("#opdu").val();
+            var correctoption = $("#correctoptionu").val();
+
+            if (question == "") {
+                $("#messagequestionu").html("***Required this fields!");
+                $("#messagequestionu").css("color", "red");
+                $("#questionu").css("border", "2px solid red")
+            }
+            else {
+                $("#messagequestionu").html("");
+                $("#questionu").css("border", "")
+            }
+
+            //------------------------------------------------------------
+
+            if (opa == "") {
+                $("#messageopau").html("***Required this fields!");
+                $("#messageopau").css("color", "red");
+                $("#opau").css("border", "2px solid red")
+            }
+            else {
+                $("#messageopau").html("");
+                $("#opau").css("border", "")
+            }
+
+            //----------------------------------------------------------------
+
+            if (opb == "") {
+                $("#messageopbu").html("***Required this fields!");
+                $("#messageopbu").css("color", "red");
+                $("#opbu").css("border", "2px solid red")
+            }
+            else {
+                $("#messageopbu").html("");
+                $("#opbu").css("border", "")
+            }
+
+            //-------------------------------------------------------------------
+
+            if (opc == "") {
+                $("#messageopcu").html("***Required this fields!");
+                $("#messageopcu").css("color", "red");
+                $("#opcu").css("border", "2px solid red")
+            }
+            else {
+                $("#messageopcu").html("");
+                $("#opcu").css("border", "")
+            }
+
+
+            //-------------------------------------------------------------
+
+            if (opd == "") {
+                $("#messageopdu").html("***Required this fields!");
+                $("#messageopdu").css("color", "red");
+                $("#opdu").css("border", "2px solid red")
+            }
+            else {
+                $("#messageopdu").html("");
+                $("#opdu").css("border", "")
+            }
+
+            //-----------------------------------------------------------------
+
+            if (correctoption == "") {
+                $("#messagecorrectoptionu").html("***Required this fields!");
+                $("#messagecorrectoptionu").css("color", "red");
+                $("#correctoptionu").css("border", "2px solid red")
+            }
+            else {
+                $("#messagecorrectoptionu").html("");
+                $("#correctoptionu").css("border", "")
+            }
+
+
+
+            if (question != "" && opa != "" && opb != "" && opc != "" && opd != "" && correctoption != "") {
+
+                createupdate();
+
+            }
+
+
+
+
+        }
+
+
+
+        function createupdate() {
+
+            data = {};
+
+            var id = $("#updateid").val();
+            var question = $("#questionu").val();
+            var opa = $("#opau").val();
+            var opb = $("#opdu").val();
+            var opc = $("#opcu").val();
+            var opd = $("#opdu").val();
+            var correctoption = $("#correctoptionu").val();
+
+            data.Id = id;
+            data.Question1 = question;
+            data.Opa = opa;
+            data.Opb = opb;
+            data.Opc = opc;
+            data.Opd = opd;
+            data.Ope = correctoption;
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Question/update",
+                data: data,
+
+                success: function (result) {
+
+
+                    if (result != null) {
+
+                        if (result = "update") {
+
+                            $("#headdermessageshow").html("Add Succefully");
+                        }
+                        else if (result = "error") {
+                            $("#headdermessageshow").html("Records not Add Something wrong");
+                        }
+                        else if (result = "excepetion") {
+                            $("#headdermessageshow").html("Server Error  please try agen");
+                        }
+
+                        else {
+                            $("#headdermessageshow").html("Server Error please try agen");
+                        }
+                    }
+                    else {
+
+                        $("#headdermessageshow").html("opps Error...!");
+                    }
+
+                }
+
+            });
+
+        };
+
+    </script>
+
+    <script>
+
+        function myFunctiondelete(p) {
+           
+            data = {};
+
+
+            data.Id = p;
+
+            debugger
+            $.ajax({
+                type: "POST",
+                url: "/Question/delete",
+                data: data,
+
+                success: function (result) {
+
+
+                    if (result != null) {
+
+                        if (result = "delete") {
+
+                            $("#headdermessageshow").html("Delete Succefully");
+                        }
+                        else if (result = "error") {
+                            $("#headdermessageshow").html("Records not Add Something wrong");
+                        }
+                        else if (result = "excepetion") {
+                            $("#headdermessageshow").html("Server Error  please try agen");
+                        }
+
+                        else {
+                            $("#headdermessageshow").html("Server Error please try agen");
+                        }
+                    }
+                    else {
+
+                        $("#headdermessageshow").html("opps Error...!");
+                    }
+
+                }
+
+            });
+
+
+
+        };
+
+    </script>
+
+
+<script>
+    function deletefunction();
+    {
+
+        data = {};
+        var id = $("#updateiddelete").val();
+
+        alert(id);
+        data.Id = id;
+        $.ajax({
+            type: "POST",
+            url: "/Question/delete",
+            data: data,
+            success: function () {
+
+
+            }
+
+        });
+
+    }
+</script>

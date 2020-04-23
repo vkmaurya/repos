@@ -1,0 +1,136 @@
+﻿@model musiclibrary2.Models.Mediadata
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Mediadata</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorynumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorynumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Createdby_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Createdby_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Createdby_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Createdby_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifiedby_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifiedby_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modifiedby_Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modifiedby_Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deletedby_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deletedby_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deletedby_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deletedby_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Media_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Media_Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

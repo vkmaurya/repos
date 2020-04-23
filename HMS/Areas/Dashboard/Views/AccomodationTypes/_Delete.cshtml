@@ -1,0 +1,63 @@
+﻿@model HMS.Areas.ViewModels.AccomodationTypeActionModel
+
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span>  Delete Accomodation Type</span>
+            </h5>
+
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="actionForm">
+
+                <input type="hidden" name="ID" value="@Model.ID" />
+            </form>
+            <div class="alert alert-danger" role="alert">
+                This is a danger alert—check it out!
+            </div>
+
+
+            <div id="errorDive">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="actionButton" type="button" class="btn btn-primary">Delete</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+    </div>
+
+}
+
+<script>
+    $("#actionButton").click(function () {
+
+     $.ajax({
+         url: '@Url.Action("Delete", "AccomodationTypes")',
+         type:"post",
+         data: $("#actionForm").serialize()
+
+        })
+            .done(function (response) {
+                if (response.Success) {
+                    // data is saved ..reload listing
+
+                    location.reload();
+                }
+                else {
+                    $("#errorDive").html(response.Message);
+                }
+
+        });
+
+
+    });
+</script>

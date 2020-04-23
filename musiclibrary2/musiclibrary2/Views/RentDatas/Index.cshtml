@@ -1,0 +1,94 @@
+﻿@model IEnumerable<musiclibrary2.Models.RentData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Createdby_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Createdby_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modifiedby_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modifiedby_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deleteby_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deleteby_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RentId })
+        </td>
+    </tr>
+}
+
+</table>

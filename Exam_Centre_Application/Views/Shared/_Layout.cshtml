@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/css/navbar.css" rel="stylesheet" />
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Chosen/chosen.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div><h3 class="@*animated*@ infinite bounce delay-2s heartBeat logo1">Technology Logo </h3></div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right navright">
+                    <li class="navbarcontant">@Html.ActionLink("HOME", "Index", "Home")</li>
+                    <li>@Html.ActionLink("REGISTRATION", "About", "Home")</li>
+                    <li>@Html.ActionLink("LOGIN", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+       
+        <footer class="">
+
+
+            <section>
+                <div class="container footerdiv">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xm-12 footerdiv">
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+
+                        </div>
+
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xm-12 footerdiv">
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                            <h3>Previous</h3>
+                        </div>
+
+                    </div>
+
+                    <hr />
+                </div>
+            </section>
+
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/Scripts/chosen.jquery.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

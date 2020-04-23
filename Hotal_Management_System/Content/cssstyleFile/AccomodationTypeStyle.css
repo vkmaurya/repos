@@ -1,0 +1,60 @@
+﻿body {
+}
+
+
+.tablefont {
+    font-size: 25px;
+    font-family: initial;
+}
+
+.tboday:hover {
+    color: blue !important;
+    font-size: 30px;
+}
+
+.modelbtn {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: Arial;
+}
+
+    .modelbtn:hover {
+        background-color: white;
+        color: blue;
+        font-family: inherit;
+        font-size: 25px;
+        border-bottom: 4px solid blue;
+    }
+
+
+.actionbutton {
+    font-size: 20px;
+}
+
+.actionbuttondelete {
+    font-size: 20px;
+}
+
+.actionbutton:hover {
+    background-color: white;
+    color: blue;
+    font-size: 25px;
+    font-family: initial;
+    border-bottom: 4px solid blue;
+}
+
+.actionbuttondelete:hover {
+    background-color: white;
+    color: red;
+    font-size: 25px;
+    font-family: initial;
+    border-bottom: 4px solid red;
+}
+
+th, td {
+    white-space: nowrap;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+
+

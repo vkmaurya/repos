@@ -1,0 +1,866 @@
+﻿@model IEnumerable<Student_Management_System.Models.Student>
+
+@{
+    ViewBag.Title = "Student";
+}
+
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <h2>Student</h2>
+
+    <div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6"><button type="button" class="btn btn-success" style="margin-bottom:10px;" data-toggle="modal" data-target="#myModal">Add New Student</button></div>
+            <div class="col-lg-6 col-md-6 col-sm-6"><h2 style="margin-bottom:20px;"><span id="messageshow2" style="font-style:italic"></span></h2></div>
+        </div>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="color:red">&times;</button>
+                        <h4 class="modal-title">STUDENT REGISTRATION FORM </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-2 col-form-label"> NAME</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="name" placeholder="Enter Name ">
+                                                <span id="mname"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="gander" class="col-sm-2 col-form-label"> Gander</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="gander">
+                                                    <option>Select Option</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                                <span id="mgander"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="contact" class="col-sm-2 col-form-label"> Contact</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="contact" placeholder="Enter Contact ">
+                                                <span id="mcontact"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="address" class="col-sm-2 col-form-label"> Address</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="address" placeholder="Enter Address ">
+                                                <span id="maddress"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="collage" class="col-sm-2 col-form-label"> Collage</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="collage" placeholder="Enter collage ">
+                                                <span id="mcollage"></span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div class="form-group row">
+                                            <label for="cname" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="email" placeholder="Enter Email ">
+                                                <span id="memail"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="amount" class="col-sm-2 col-form-label"> Amount</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="amount" placeholder="Enter Amount ">
+                                                <span id="mamount"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-2 col-form-label">Course</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="coursename"></select>
+                                                <span id="mcoursename"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control dura" id="duration"></select>
+                                                <span id="mduration"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="fees" class="col-sm-2 col-form-label">Fees</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" disabled style="color:red" id="fess" placeholder="Enter Fees ">
+                                                <span id="mfess"></span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="Registration();">Submit</button>
+                        <button type="button" class="btn btn-warning">Reset</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover" id="studenttable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gander)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Collage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistrationDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gander)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Collage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationDate)
+                    </td>
+                    <td>
+
+
+                        <button class="btn btn-success" onclick="Update(@item.Id);">Update</button>
+                        <button class="btn btn-danger" onclick="Delete(@item.Id);">Delete</button>
+                        <button class="btn btn-warning" onclick="Details(@item.Id);">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+    <div>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <div id="myupdatemodelstudentModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="color:red">&times;</button>
+                        <h4 class="modal-title">STUDENT REGISTRATION FORM </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-2 col-form-label"> NAME</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="studentid" class="hidden" />
+                                                <input type="text" class="form-control" id="nameu" placeholder="Enter Name ">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="gander" class="col-sm-2 col-form-label"> Gander</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="ganderu">
+                                                    <option>Select Option</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="contact" class="col-sm-2 col-form-label"> Contact</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="contactu" placeholder="Enter Contact ">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="address" class="col-sm-2 col-form-label"> Address</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="addressu" placeholder="Enter Address ">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="collage" class="col-sm-2 col-form-label"> Collage</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="collageu" placeholder="Enter collage ">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div class="form-group row">
+                                            <label for="cname" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="emailu" placeholder="Enter Email ">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="amount" class="col-sm-2 col-form-label"> Amount</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="amountu" placeholder="Enter Amount ">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="name" class="col-sm-2 col-form-label">Course</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="coursenameu"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="duration" class="col-sm-2 col-form-label">Duration</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control dura" id="durationu"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="fees" class="col-sm-2 col-form-label">Fees</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" disabled style="color:red" id="fessu" placeholder="Enter Fees ">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="Registrationupdate();">Submit</button>
+                        <button type="button" class="btn btn-warning">Reset</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <div id="mystudentdeleteModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="color:red">&times;</button>
+                        <h4 class="modal-title">Delete Records</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="hidden" id="studentdeleteid" />
+                        <h4 style="color:blue">Do you Wont to Delete this Records</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="confirmDeletestudent();">DELETE</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $("#studenttable").dataTable();
+</script>
+<script>
+    $(document).ready(function () {
+        dropdownlist();
+    });
+    function dropdownlist() {
+        var ddlCustomers = $("#coursename");
+        ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+        $.ajax({
+            type: "GET",
+            url: "/Student/dropdownlist",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                $.each(response, function (index, result) {
+
+                    ddlCustomers.append($("<option></option>").val(result.Id).html(result.CourseName));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    };
+</script>
+<script>
+    $(document).ready(function () {
+        dropdowlisduration();
+    });
+    function dropdowlisduration() {
+        $("#coursename").change(function (e) {
+            data = {};
+            var id = $("#coursename").val();
+
+            data.id = id;
+
+            var ddlCustomers = $("#duration");
+            ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+            $.ajax({
+                type: "POST",
+                url: "/Student/dropdownduration",
+                data: data,
+
+                success: function (response) {
+                    ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                    $.each(response, function (index, result) {
+
+                        ddlCustomers.append($("<option></option>").val(result.Id).html(result.CourseDuration));
+                    });
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        })
+    };
+</script>
+<script>
+    $(document).ready(function () {
+
+        getcoursefee();
+
+    });
+
+    function getcoursefee() {
+        $("#duration").change(function (e) {
+            data = {};
+            var d = $("#duration").val();
+            data.Id = d;
+            $.ajax({
+
+                type: 'POST',
+                url: '/Student/coursesfee',
+                datatype: 'JSON',
+                data: data,
+                success: function (data) {
+
+                    $("#fess").val(data.CoursePrice);
+
+                }
+
+            });
+
+        });
+
+    }
+</script>
+
+<script>
+    function Registration() {
+
+        data = {};
+        var name = $("#name").val();
+        var gander = $("#gander").val();
+        var contact = $("#contact").val();
+        var email = $("#email").val();
+        var address = $("#address").val();
+        var collage = $("#collage").val();
+        var duration = $("#duration").val();
+        var amount = $("#amount").val();
+        var cname = $("#coursename").val();
+
+
+       
+
+        var studentnamevaldation = /^[A-Za-z]+$/;
+        var contactvaldation = /^[0-9]*$/;
+        var emailvaldation = /^\w+[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        var addressvaldation = /^[A-Za-z]+$/;
+        var collagevaldation = /^[A-Za-z]+$/;
+        var amountvaldation = /^[0-9]*$/;
+
+        if (name == "") {
+            $("#mname").html('**this field required');
+            $("#mname").css("color", "red");
+        }
+        else if (!studentnamevaldation.test(name)) {
+            $("#mname").html('Please Enter only alphabets in textme');
+            $("#mname").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#mname").html('');
+        }
+
+        //---------------------------------------
+        if (gander == "Select Option") {
+            $("#mgander").html('**this field required');
+            $("#mgander").css("color", "red");
+        }
+        else {
+            $("#mgander").html('');
+        }
+        //---------------------------------------------------
+
+        if (contact == "") {
+            $("#mcontact").html('**this field required');
+            $("#mcontact").css("color", "red");
+        }
+        else if (!contactvaldation.test(contact)) {
+            $("#mcontact").html('Please Enter only alphabets in textme');
+            $("#mcontact").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#mcontact").html('');
+        }
+
+        //------------------------------------------------------------
+
+        if (email == "") {
+            $("#memail").html('**this field required');
+            $("#memail").css("color", "red");
+        }
+        else if (!emailvaldation.test(email)) {
+            $("#memail").html('Please Enter only alphabets in textme');
+            $("#memail").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#memail").html('');
+        }
+        //------------------------------------------------------------------------------
+
+
+        if (address == "") {
+            $("#maddress").html('**this field required');
+            $("#maddress").css("color", "red");
+        }
+        else if (!addressvaldation.test(email)) {
+            $("#maddress").html('Please Enter only alphabets in textme');
+            $("#maddress").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#maddress").html('');
+        }
+
+        //-----------------------------------------------------------------------------------
+
+
+        if (collage == "") {
+            $("#mcollage").html('**this field required');
+            $("#mcollage").css("color", "red");
+        }
+        else if (!collagevaldation.test(collage)) {
+            $("#mcollage").html('Please Enter only alphabets in textme');
+            $("#mcollage").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#mcollage").html('');
+        }
+
+        //--------------------------------------------------------------------------
+
+
+        if (duration == null) {
+            $("#mduration").html('**this field required');
+            $("#mduration").css("color", "red");
+        }
+
+
+       else if (duration == 0) {
+            $("#mduration").html('Select option');
+            $("#mduration").css("color", "red");
+        }
+        else {
+            $("#mduration").html('');
+        }
+        //-------------------------------------------------------------------------
+        if (amount == "") {
+            $("#mamount").html('**this field required');
+            $("#mamount").css("color", "red");
+        }
+        else if (!amountvaldation.test(amount)) {
+            $("#mamount").html('Please Enter only alphabets in textme');
+            $("#mamount").css("color", "red");
+            //return false;
+        }
+        else {
+            $("#mamount").html('');
+        }
+        //-------------------------------------------------------
+        if (cname == 0) {
+            $("#mcoursename").html('**this field required');
+            $("#mcoursename").css("color", "red");
+        }
+       
+        else {
+            $("#mcoursename").html('');
+        }
+
+
+
+
+        //data.Name = name;
+        //data.Gander = gander;
+        //data.Contact = contact;
+        //data.Email = email;
+        //data.Address = address;
+        //data.Collage = collage;
+        //data.Duration = duration;
+        //data.Amount = amount;
+        //data.CourseName = cname;
+
+        //$("#myModal").modal("hide");
+        //$.ajax({    //create an ajax request to display.php
+        //    type: "POST",
+        //   // url: "/Student/Add",
+        //    data: data,
+        //    dataType: "JSON",   //expect html to be returned
+        //    success: function (response) {
+        //        if (response != null) {
+
+        //            if (response == "success") {
+
+
+        //                $("#messageshow2").html('Add Successfully');
+        //                $("#messageshow2").css("color", "green");
+
+        //            }
+        //            else if (response == "error") {
+
+        //                $("#messageshow2").html('Courses Not Add');
+        //                $("#messageshow2").css("color", "#FF0000");
+
+        //            }
+        //            else if (response == "exception") {
+
+        //                $("#messageshow2").html('SomeThing Wonts Wrong');
+        //                $("#messageshow2").css("color", "#FFFF00");
+        //            }
+        //            else {
+        //                $("#messageshow2").html('Network Problems');
+        //                $("#messageshow2").css("color", "#8B4513");
+        //            }
+        //        }
+        //        else {
+
+        //            $("#messageshow2").html('Network Problems');
+        //            $("#messageshow2").css("color", "#8B4513");
+        //        }
+
+        //    }
+
+        //});
+
+    }
+</script>
+
+
+<script>
+    function Delete(p) {
+        $("#studentdeleteid").val(p);
+        $("#mystudentdeleteModal").modal("show");
+    }
+</script>
+
+<script>
+    function confirmDeletestudent() {
+
+        data = {};
+        var id = $("#studentdeleteid").val();
+
+        data.Id = id;
+        $("#mystudentdeleteModal").modal("hide");
+        $.ajax({    //create an ajax request to display.php
+            type: "POST",
+            url: "/Student/Delete",
+            data: data,
+            dataType: "JSON",   //expect html to be returned
+            success: function (response) {
+
+                if (response != null) {
+
+                    if (response != null) {
+
+                        if (response = "Deletesuccess") {
+
+                            $("#messageshow2").html('Delete Successfully');
+                            $("#messageshow2").css("color", "green");
+
+                        }
+                        else if (response == "Deleteerror") {
+
+
+                            $("#messageshow2").html('Not Delete Records');
+                            $("#messageshow2").css("color", "#FF0000");
+
+                        }
+
+                        else if (response = "Deleteexception") {
+
+                            $("#messageshow2").html('Something Wont Wrong');
+                            $("#messageshow2").css("color", "#FFFF00");
+
+                        }
+
+                        else {
+                            $("#messageshow2").html('Something Wont Wrong');
+                            $("#messageshow2").css("color", "#FFFF00");
+                        }
+                    }
+                    else {
+                        $("#messageshow2").html('NetWork Problems');
+                        $("#messageshow2").css("color", "#8B4513");
+
+                    }
+                }
+            }
+
+        });
+
+
+    }
+</script>
+
+
+<script>
+    function Update(id) {
+        data = {};
+        data.Id = id;
+
+        $.ajax({
+            type: "POST",
+            url: "/Student/Searchstudent",
+            data: data,
+            datatype: "JSON",
+            success: function (response) {
+
+
+
+                $("#myupdatemodelstudentModal").modal("show");
+                $("#studentid").val(response.Id);
+                $("#nameu").val(response.Name);
+                $("#ganderu").val(response.Gander);
+                $("#contactu").val(response.Contact);
+                $("#emailu").val(response.Email);
+                $("#addressu").val(response.Address);
+                $("#collageu").val(response.Collage);
+                $("#durationu").val(response.Duration);
+                $("#amountu").val(response.Amount);
+                $("#coursenameu").val(response.CourseName);
+
+
+            }
+
+        });
+
+
+
+    };
+</script>
+
+<script>
+
+    function Registrationupdate() {
+        data = {};
+        var studentid = $("#studentid").val();
+        var name = $("#nameu").val();
+        var gander = $("#ganderu").val();
+        var contact = $("#contactu").val();
+        var email = $("#emailu").val();
+        var address = $("#addressu").val();
+        var collage = $("#collageu").val();
+        var duration = $("#durationu").val();
+        var amount = $("#amountu").val();
+        var coursesname = $("#coursenameu").val();
+
+
+        data.Id = studentid;
+        data.Name = name;
+        data.Gander = gander;
+        data.Contact = contact;
+        data.Email = email;
+        data.Address = address;
+        data.Collage = collage;
+        data.Duration = duration;
+        data.Amount = amount;
+        data.CourseName = coursesname;
+
+        $("#myupdatemodelstudentModal").modal("hide");
+
+        $.ajax({
+            type: "POST",
+            url: "/Student/Update",
+            data: data,
+            datatype: "JSON",
+            success: function (response) {
+
+                if (response != null) {
+                    if (response == "updatesuccess") {
+
+                        $("#messageshow2").html('Update Successfully');
+                        $("#messageshow2").css("color", "green");
+                    }
+                    else if (response == "updateerror") {
+
+                        $("#messageshow2").html('Not Update Records');
+                        $("#messageshow2").css("color", "#FF0000");
+
+                    }
+                    else if (response = "updateexception") {
+
+                        $("#messageshow2").html('Something Wont Wrong');
+                        $("#messageshow2").css("color", "#FFFF00");
+
+                    }
+                    else {
+
+                        $("#messageshow2").html('Something Wont Wrong');
+                        $("#messageshow2").css("color", "#FFFF00");
+                    }
+                }
+
+                else {
+
+                    $("#messageshow2").html('NetWork Problems');
+                    $("#messageshow2").css("color", "#8B4513");
+
+                }
+            }
+
+        });
+    }
+</script>

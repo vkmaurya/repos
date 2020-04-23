@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.headerruncontant
+{
+    
+}
+
+
+.footerdiv
+{
+    height:auto;
+    background-color:blue;
+}
+
+marquee {
+    font-size: 30px;
+    font-weight: 800;
+    color: #8ebf42;
+    font-family: sans-serif;
+}
+
+.imgstyle
+{
+   width:auto;
+    height:500px;
+}

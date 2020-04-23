@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<link href="~/Content/css/registrationform.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/js/registration.js"></script>
+
+
+<div class="container registrationform">
+    <div class="row">
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 headerruncontant"><marquee>A scrolling text created with HTML Marquee element.</marquee></div>
+            </div>
+        </div>
+
+        <h1 class="text-center">Registration Form</h1>
+        <br />
+        <br />
+        <div class="col-lg-6 col-md-6 col-sm-12">
+
+            <div style="padding-right:20px;">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">NAME</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="Enter Name">
+                        <span id="messagename"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">GANDER</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="gander" placeholder="Select Gander">
+                            <option>Select Option</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                        <span id="messagegander"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">CONTACAT</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="contact" placeholder="Enter conctact">
+                        <span id="messagecontact"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">EMAIL</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="email" placeholder="Enter Email">
+                        <span id="messageemail"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">IMAGES</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control file-loading" id="images" name="image" multiple="multiple" placeholder="Images upload" required accept="image/jpg,image/png,image/jpeg">
+                        <span id="messageimages"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input type="submit" class="form-control btn btn-success" value="SUBMIT" onclick="Submit();">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">COROUSES</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="courses" placeholder="Enter Courses"></select>
+                    <span id="messagecourses"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="dob" class="col-sm-2 col-form-label">DOB</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="datebirth" id="dob" placeholder="Enter Date of Brith">
+                    <span id="messagedob"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="pincode" class="col-sm-2 col-form-label">P_CODE</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="pincode" placeholder="Enter Pincode">
+                    <span id="messagepincode"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="address" class="col-sm-2 col-form-label">ADDRESS</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" placeholder="Enter Address">
+                    <span id="messageaddress"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">PASSWORD</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder=" Enter Password">
+                    <span id="messagepassword"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input type="reset" class="form-control btn btn-danger" value="RESET" onclick="resetform();">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,701 @@
+﻿@model IEnumerable<Music_Library_System.Models.UserData>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css">
+    <link rel="stylesheet" href="/vendors/formvalidation/dist/css/formValidation.min.css">*@
+
+
+
+<div class="container-fluid table-responsive">
+    <h2>Index</h2>
+
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Add New</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add  Costomer</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="demoForm">
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" class="form-control" id="name" placeholder="name">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Gender</label>
+                            <div class="col-sm-10">
+                                <select name="answer" id="gender" data-validation="required" class="form-control">
+                                    <option value=""> - - Gender - - </option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="dob" class="col-sm-2 col-form-label">Dob</label>
+                            <div class="col-sm-10">
+                                <input type="text" data-validation="birthdate" data-validation-format="dd/mm/yyyy" class="form-control" id="dob" placeholder="dd/mm/yyyy">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="email" id="email" data-validation="email" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="contact" data-validation="number" placeholder="contact">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="pincode" class="col-sm-2 col-form-label">Pincode</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="pincode" data-validation="number" placeholder="pincode">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-validation="length " data-validation-length="3-12" data-validation-error-msg="Password has to be an alphanumeric value (3-12 chars)" id="password" placeholder="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="min4" id="address" placeholder="address">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input type="submit" class="form-control btn btn-success" onclick="addcustomer()" value="Submit">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <table class="table table-bordered table-hover table-striped" id="usertable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dob)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pincode)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.IsValid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Roll)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dob)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pincode)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsValid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Roll)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+
+                        <button class="btn btn-info" data-toggle="modal" data-target="#myUpdateModal" onclick="updateuserrecords(@item.Id );">Edit</button>
+                        <button class="btn btn-danger" onclick="Deleterecords(@item.Id );">Delete</button>
+
+                        <button class="btn btn-info" onclick="detailsuserrecords(@item.Id );">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dob)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pincode)
+                </th>
+              
+                <th>
+                    @Html.DisplayNameFor(model => model.IsValid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Roll)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    @*------------------------------------user update forms-------------------------------------------------------------------*@
+    <div class="modal fade" id="myUpdateModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add New Costomer</h4>
+                </div>
+                <div class="modal-body">
+                    @*<form id="demoForm">*@
+
+                    <div class="form-group row">
+                        <label for="userupdateid" class="col-sm-2 col-form-label">Id</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" disabled id="userupdateid" placeholder="id">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="userupdatename" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" data-validation="custom" data-validation-regexp="^([a-zA-Z]+)$" id="userupdatename" placeholder="name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="userupdategender" class="col-sm-2 col-form-label">Gender</label>
+                        <div class="col-sm-10">
+                            <select name="answer" id="userupdategender" data-validation="required" class="form-control">
+                                <option value=""> - - Gender - - </option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="userupdatedob" class="col-sm-2 col-form-label">Dob</label>
+                        <div class="col-sm-10">
+                            <input type="text" data-validation="birthdate" data-validation-format="dd/mm/yyyy" class="form-control" id="userupdatedob" placeholder="dd/mm/yyyy">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="userupdateemail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="email" id="userupdateemail" data-validation="email" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="userupdatecontact" class="col-sm-2 col-form-label">Contact</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="userupdatecontact" data-validation="number" placeholder="contact">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="userupdatepincode" class="col-sm-2 col-form-label">Pincode</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="userupdatepincode" data-validation="number" placeholder="pincode">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="min4" id="userupdateaddress" placeholder="address">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="userupdatestatus" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            @*<input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="min4" id="userupdatestatus" placeholder="address">*@
+
+                            <select name="gender" id="userupdatestatus" data-validation="required" class="form-control">
+                                <option value=""> - - select - - </option>
+                                <option>True</option>
+                                <option>False</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <input class="hidden" id="" />
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <input type="submit" class="form-control btn btn-success" onclick="edituserdata()" value="Submit">
+                        </div>
+                    </div>
+
+
+                    <input class="hidden" id="userupdatepassword" />
+                    <input class="hidden" id="userupdateroll" />
+
+
+
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                    @*</form>*@
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        viewuserdate();
+
+    });
+
+
+    function viewuserdate() {
+
+
+        var oTable = $("#usertable").dataTable();
+        oTable.fnDestroy();
+        oTable.fnClearTable();
+        $("#usertable").dataTable();
+    };
+
+</script>
+
+<script>
+    $.validate({
+        lang: 'es',
+        modules: 'date',
+
+
+    });
+
+
+
+
+
+    function addcustomer() {
+        data = {};
+        var name = $("#name").val();
+
+        var gender = $("#gender").val();
+        var dob = $("#dob").val();
+        var email = $("#email").val();
+        var contact = $("#contact").val();
+        var pincode = $("#pincode").val();
+        var password = $("#password").val();
+        var address = $("#address").val();
+
+        if (name != "" && dob != "") {
+
+            data.Name = name;
+            data.Gender = gender;
+            data.Dob = dob;
+            data.Email = email;
+            data.Contact = contact;
+            data.Pincode = pincode;
+            data.Password = password;
+            data.Address = address;
+            data.Roll = "Admin";
+
+
+            $.ajax({
+                type: "Post",
+                url: "/User/Create",
+                data: data,
+                success: function (model) {
+
+                    alert("data insert Succefully");
+
+                },
+                Error: function (error) {
+                    alert(error);
+                }
+            });
+
+
+        }
+        else {
+            alert("Required all fields");
+        }
+
+    }
+
+
+    //--------------------------------Search------------------------------------------
+
+    function datetimeconvert(value) {
+        if (value == null) {
+            return "";
+        }
+        else {
+            if (value != '') {
+                var pattern = /Date\(([^)]+)\)/;
+                var result = pattern.exec(value);
+                var dt = new Date(parseFloat(result[1]));
+                return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+            }
+            else {
+                return "";
+            }
+        }
+
+    }
+
+    function updateuserrecords(p) {
+     
+        data = { Id: p };
+
+
+        $.ajax({
+            type: "Post",
+            url: "/User/Edituserdata",
+            data: data,
+            success: function (model) {
+
+            
+                $("#userupdateid").val(model.Id);
+                $("#userupdatename").val(model.Name);
+                $("#userupdategender").val(model.Gender);
+              
+                var date = model.Dob;
+                var a = datetimeconvert(date);                                      
+
+                $("#userupdatedob").val(a);
+                $("#userupdateemail").val(model.Email);
+                $("#userupdatecontact").val(model.Contact);
+                $("#userupdatepincode").val(model.Pincode);
+                $("#userupdateaddress").val(model.Address);
+                $("#userupdatestatus").val(model.IsValid);
+                $("#userupdatepassword").val(model.Password);
+                $("#userupdateroll").val(model.Roll);
+
+
+            },
+            Error: function (error) {
+                alert(error);
+            }
+        });
+
+
+    }
+
+
+    function edituserdata() {
+        data = {};
+        var id = $("#userupdateid").val();
+        var name = $("#userupdatename").val();
+        var gender = $("#userupdategender").val();
+        var dob = $("#userupdatedob").val();
+
+        var email = $("#userupdateemail").val();
+        var contact = $("#userupdatecontact").val();
+        var pincode = $("#userupdatepincode").val(); 
+        var address = $("#userupdateaddress").val();
+        var status = $("#userupdatestatus").val();
+        var password = $("#userupdatepassword").val();
+        var roll = $("#userupdateroll").val();
+
+        var d = new Date();
+
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+
+        var output = d.getFullYear() + '/' +
+            (month < 10 ? '0' : '') + month + '/' +
+            (day < 10 ? '0' : '') + day;
+
+
+        if (name != "" && dob != "") {
+
+
+            data.Id = id;
+            data.Name = name;
+            data.Gender = gender;
+            data.Dob = dob;
+         
+            data.Email = email;
+            data.Contact = contact;
+            data.Pincode = pincode;
+            data.Address = address;
+            data.IsValid = status;
+            data.Password = password;
+            data.Roll = roll;
+            data.ModifyBy_Date = output;
+
+
+
+
+            $.ajax({
+                type: "Post",
+                url: "/User/Edit",
+                data: data,
+                success: function (model) {
+
+                    alert("data delete Succefully");
+
+                },
+                Error: function (error) {
+                    alert(error);
+                }
+            });
+
+
+        }
+        else {
+            alert("Required all fields");
+        }
+
+    }
+
+    //------------------------------------------------delete user---------------------------------------------------------
+
+    function Deleterecords(p) {
+        alert("delete" + p)
+        data = { Id: p };
+
+
+        $.ajax({
+            type: "Post",
+            url: "/User/Delete",
+            data: data,
+            success: function (model) {
+
+                alert(model.Name);
+
+
+
+            },
+            Error: function (error) {
+                alert(error);
+            }
+        });
+    };
+</script>
+
+@*@*<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+    <script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+    <script src="/vendors/formvalidation/dist/js/plugins/Tachyons.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function (e) {
+            // Generate a simple captcha
+            const randomNumber = function (min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            };
+            const random = [randomNumber(1, 100), randomNumber(1, 200)];
+            document.getElementById('captchaOperation').innerHTML = [random[0], '+', random[1], '='].join(' ');
+
+            const form = document.getElementById('demoForm');
+            FormValidation.formValidation(form, {
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The first name is required'
+                            }
+                        }
+                    },
+                    lastName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The last name is required'
+                            }
+                        }
+                    },
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The username is required'
+                            },
+                            stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The username must be more than 6 and less than 30 characters long'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: 'The username can only consist of alphabetical, number and underscore'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The email address is required'
+                            },
+                            emailAddress: {
+                                message: 'The input is not a valid email address'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The password is required'
+                            },
+                            stringLength: {
+                                min: 8,
+                                message: 'The password must have at least 8 characters'
+                            },
+                            different: {
+                                message: 'The password cannot be the same as username',
+                                compare: function () {
+                                    return form.querySelector('[name="username"]').value;
+                                }
+                            }
+                        }
+                    },
+                    gender: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The gender is required'
+                            }
+                        }
+                    },
+                    captcha: {
+                        validators: {
+                            callback: {
+                                message: 'Wrong answer',
+                                callback: function (input) {
+                                    const items = document.getElementById('captchaOperation').innerHTML.split(' ');
+                                    const sum = parseInt(items[0]) + parseInt(items[2]);
+                                    return input.value == sum;
+                                }
+                            }
+                        }
+                    },
+                    agree: {
+                        validators: {
+                            notEmpty: {
+                                message: 'You must agree with the terms and conditions'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    tachyons: new FormValidation.plugins.Tachyons(),
+                    submitButton: new FormValidation.plugins.SubmitButton(),
+                    icon: new FormValidation.plugins.Icon({
+                        valid: 'fa fa-check',
+                        invalid: 'fa fa-times',
+                        validating: 'fa fa-refresh'
+                    }),
+                }
+            });
+        });
+    </script>*@
