@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "MemberShipPage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>MemberShipPage</h2>
+
+
+<!-- Modal -->
+<div class="row">
+    <div class="col-6">
+        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#membershipmodelModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New MemberShip</button>
+    </div>
+    <div class="col-6"><span class="mediatypesuccessmessage" id="membershipsuccessmessage"></span></div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="membershipmodelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Add And Update MemberShip</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ResetFormMemberShip();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <div class="form-group">
+                        <input type="text" id="membershipid" hidden />
+                        <label for="mediatypename">MemberShip Name: </label>
+                        <input type="text" class="form-control" id="membershipname" placeholder="Enter MemberShip Name">
+                        <span class="validationmediatypevalidation" id="validationmembershipname"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="mediatypename">MemberShip Duration: </label>
+                        <input type="text" class="form-control" id="membershipduration" placeholder="Enter MemberShip Duration">
+                        <span class="validationmediatypevalidation" id="validationmembershipduration"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="mediatypename">MemberShip Amount: </label>
+                        <input type="text" class="form-control" id="membershipamount" placeholder="Enter MemberShip Amount">
+                        <span class="validationmediatypevalidation" id="validationmembershipamount"></span>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="mediatypename">Enter MemberShip Description </label>
+                        <textarea class="form-control" id="membershipdescription" placeholder=" Enter MemberShip Description"></textarea>
+                        <span class="validationmediatypevalidation" id="validationmembershipdescription"></span>
+                    </div>
+
+                   
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="savemembershipdescription();"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-warning" style="color:white!important" onclick="ResetFormMemberShip();"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ResetFormMemberShip();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------------------>
+
+<div>
+    <div>
+        <div>
+            <table class="table" id="MemberShiptable" style="width:100%!important">
+                <thead>
+                    <tr>
+                        <th>MemberShipName</th>
+                        <th>MemberDuration</th>
+                        <th>MemberAmount</th>
+                        <th>MemberDescription</th>
+                        <th>Action Button</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------------------->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="membershipmodeldeleted" tabindex="-1" role="dialog" aria-labelledby="mediadeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Media Deleted</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" id="membershipiddeleted" hidden />
+                    <div class="alert alert-danger" role="alert"><h5>Do you Wonts Deleted records Yes/NO</h5></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="membershipdeleted();"><i class="fa fa-check" aria-hidden="true"></i> Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------------------->

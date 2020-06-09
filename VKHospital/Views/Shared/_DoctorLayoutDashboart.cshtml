@@ -1,0 +1,96 @@
+﻿
+@{
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/AdminDashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/HomePages/DoctorPages.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="~/AdminDashboard/css/simple-sidebar.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+   
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading"><i class="fa fa-th" aria-hidden="true"></i> Doctor DashBoard </div>
+            <div class="list-group list-group-flush">
+                <a href="/Doctor/DoctorMasterPage/" class="list-group-item list-group-item-action bg-light"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</a>
+                <a href="/Appoiment/ViewDoctorsetaptinetappoimentcomplatespage/" class="list-group-item list-group-item-action bg-light"><i class="fa fa-users" aria-hidden="true"></i>AppoimentComplates</a>
+                <a href="/Appoiment/GetPatientAppoimentpendingListdoctor/" class="list-group-item list-group-item-action bg-light"><i class="fa fa-stethoscope" aria-hidden="true"></i> Appoiment Panding List</a>
+                <a href="/Appoiment/Doctorsetaptinetappoimentdonepage/" class="list-group-item list-group-item-action bg-light"><i class="fa fa-user-md" aria-hidden="true"></i> Appoiment Done patient</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-h-square" aria-hidden="true"></i> kks</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">@Session["DoctorUsername"].ToString() </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Login/LogOut/">LogOut</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                @RenderBody()
+
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/AdminDashboard/vendor/jquery/jquery.min.js"></script>
+    <script src="~/AdminDashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+   
+
+    <script src="~/Scripts/js/patientappoimentdoctor.js"></script>
+    <script src="~/Scripts/js/ToJsDate.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
+</html>
+

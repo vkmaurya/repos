@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "AccommodationPackagePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>AccommodationPackagePage</h2>
+
+
+
+@*------------------------------AccomodationType Model Start-----------------------------------------*@
+
+<!-- Button trigger modal -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6">
+            <button type="button" class="btn btn-success accomodationtypemodelbutton" data-toggle="modal" data-target="#AccomodationpackageModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New AccommodationPackage Name</button>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-6">
+            <div class="alert alert-info accomodationalertmesagediv" role="alert"><h5 class="accomodationallmessagestyle" id="accomodationallmessage"></h5></div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="AccomodationpackageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Accommodation Package Add And Update</h5>
+                <button type="button" onclick="ResetAccomodationpackageform();" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div class="form-group">
+
+                        <input type="text" id="accommodationpackageid" hidden />
+                        <label for="exampleInputPassword1">Enter AccommodationTypeName</label><br />
+
+                        @*<input type="text" class="formcontrol" id="accomodationtypename" placeholder="Enere Accommodation Name"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>*@
+                      
+                        <select class="formcontrol" id="accomodationtypenamedropdownlist"></select><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommodationpackagevalidationdrop"></span></div>
+
+                        <label for="exampleInputPassword1">Enter AccommodationPackageName</label><br />
+                        <input type="text" class="formcontrol" id="accomodationpackagename" placeholder="Enere AccommodationPackageName"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommodationpackagenamevalidation"></span></div>
+
+
+
+                        <label for="exampleInputPassword1">Enter NoFoRoom</label><br />
+                        <input type="text" class="formcontrol" id="noofroom" placeholder="Enere number of room"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommodationpackagenoofroomvalidation"></span></div>
+
+
+
+                        <label for="exampleInputPassword1">Enter FeePerNight</label><br />
+                        <input type="text" class="formcontrol" id="feepernight" placeholder="Enere fee per night"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommodationpackagefeepernightvalidation"></span></div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" onclick="accommodationpackagaddupdate();"><i class="fa fa-cloud" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-warning" style="color:white" onclick="ResetAccomodationpackageform();"> <i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ResetAccomodationpackageform();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*------------------------------AccomodationType Model End-------------------------------------------*@
+
+@*------------------------------AccomodationType Table Start-----------------------------------------*@
+
+<div>
+    <div>
+        <table class="table table-hover" id="viewAccommodationpackagelist" style="width:100%!important">
+            <thead>
+                <tr>
+                    <th>AccomodationType</th>
+                    <th>AccommodationPackageName</th>
+                    <th>NoOfRoom</th>
+                    <th>FeePerNight</th>
+                    <th>Action Buttons</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@*------------------------------AccomodationType Table End-------------------------------------------*@
+
+
+@*------------------------------AccomodationType Delete Start-------------------------------------------*@
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="accomodationpackageModaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="accomodationpackagedeleteid" hidden />
+                <div class="alert alert-danger" role="alert"><h5>Do You Wonts Deleted this records yes/no</h5></div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" onclick="deleteaccommodationpackage();"><i class="fa fa-trash-o" aria-hidden="true"></i> Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*------------------------------AccomodationType Delete End-------------------------------------------*@
+
+
+

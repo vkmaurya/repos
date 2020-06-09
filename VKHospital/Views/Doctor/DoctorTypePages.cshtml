@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "DoctorTypePages";
+    Layout = "~/Views/Shared/_AdmainLayout.cshtml";
+}
+
+<h2>DoctorTypePages</h2>
+
+
+<div>
+    <div>
+        <!-- Button trigger modal -->
+
+        <div class="row text-left">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <button type="button" class="btn btn-success mudolebutton" data-toggle="modal" data-target="#doctortypenamemodel"><i class="fa fa-plus" aria-hidden="true"></i>  Add New DoctorTypeName </button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div><span class="alertmessagedoctortype"> </span></div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="doctortypenamemodel"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="text" id="doctortypeid" hidden />
+                        <div class="form-group">
+                            <label for="doctortypename">Enter DoctorType Name</label>
+                            <input type="text" class="form-control" id="doctortypename" placeholder="Enter DoctorType Name">
+                            <span class="doctortypenamemessage"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="adddoctortypename()"><i class="fa fa-upload" aria-hidden="true"></i> Save </button>
+                        <button type="button" class="btn btn-warning" style="color:white" onclick="resetdoctortypeform();"><i class="fa fa-retweet"  aria-hidden="true"></i> Reset</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetdoctortypeform();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*-----------------------------------------------------------------------------------------------------------------*@
+
+        <table class="table" id="AlldoctorTypeList" style="width:100%!important">
+            <thead>
+                <tr>
+                    <th>DoctorTypeName</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tfoot>
+            </tfoot>
+
+        </table>
+
+        @*-------------------------------------------------------------------------------------------------------------------------*@
+    </div>
+</div>
+
+
+
+

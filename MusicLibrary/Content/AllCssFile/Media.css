@@ -1,0 +1,19 @@
+﻿body {
+}
+
+.buttonmeditype
+{
+    width:100%;
+    background-color:aqua;
+    height:50px;
+    font-size:30px;
+    font-weight:bold;
+    font-family:Arial;
+}
+
+.ab
+{
+    color:black;
+    font-family:Arial;
+    font-size:20px;
+}

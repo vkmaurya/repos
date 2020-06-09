@@ -1,0 +1,55 @@
+﻿body {
+}
+
+
+.userformcontrol {
+    width: 75%;
+    height: 40px;
+    margin-top: -10px !important;
+    border-left: none;
+   
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+
+    .userformcontrol:focus {
+        outline: none !important;
+        box-shadow: none !important;
+       
+    }
+
+    .inputiconsuser {
+        height: 40px;
+        border-right: none !important;
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+        border-top: 1px solid black;
+    }
+
+.textcenter{
+    height:40px;
+    text-align:center;
+}
+
+.formicons{
+
+    color:black;
+    font-weight:bolder;
+    font-size:21px;
+    
+}
+
+.lablename{
+    
+    font-weight:bolder;
+    font-size:17px;
+}
+
+
+.uservalidationmesage{
+
+    color:red;
+    height:30px;
+    font-family:Arial;
+}

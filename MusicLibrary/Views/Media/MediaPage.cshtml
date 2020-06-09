@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "MediaPage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>MediaPage</h2>
+
+<!-- Modal -->
+<div class="row">
+    <div class="col-6">
+        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#mediamodelModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New Media</button>
+    </div>
+    <div class="col-6"><span class="mediatypesuccessmessage" id="mediasuccessmessage"></span></div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="mediamodelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Add And Update Media</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ResetFormMedia();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <div class="form-group">
+                        <input type="text" id="mediaeid" hidden />
+                        <label for="mediatypename">Song Name: </label>
+                        <input type="text" class="form-control" id="songname" placeholder="Enter SongName">
+                        <span class="validationmediatypevalidation" id="validationsongname"></span>
+                    </div>
+
+                    <div class="form-group">
+                     
+                        <label for="mediatypename">Singer Name: </label>
+                        <input type="text" class="form-control" id="singername" placeholder="Enter SongName">
+                        <span class="validationmediatypevalidation" id="validationsingername"></span>
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <label for="mediatypename">Author Name: </label>
+                        <input type="text" class="form-control" id="authorname" placeholder="Enter AuthorName">
+                        <span class="validationmediatypevalidation" id="validationauthorname"></span>
+                    </div>
+
+                    <div class="form-group">
+                       
+                        <label for="mediatypename">Composer Name: </label>
+                        <input type="text" class="form-control" id="composername" placeholder="Enter ComposerName">
+                        <span class="validationmediatypevalidation" id="validationcomposername"></span>
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <label for="mediatypename">Labale Name: </label>
+                        <input type="text" class="form-control" id="labale" placeholder="Enter labale">
+                        <span class="validationmediatypevalidation" id="validationlabale"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="savemedia();"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-warning" style="color:white!important" onclick="ResetFormMedia();"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ResetFormMedia();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------------------>
+
+<div>
+    <div>
+        <div>
+            <table class="table" id="Meditable" style="width:100%!important">
+                <thead>
+                    <tr>
+                        <th>SongName</th>
+                        <th>SingerName</th>
+                        <th>AuthorName</th>
+                        <th>Composer</th>
+                        <th>Labale</th>
+                        <th>Action Button</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------------------->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="mediadeleteModalLabel" tabindex="-1" role="dialog" aria-labelledby="mediadeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Media Deleted</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" id="mediaupdateid" hidden />
+                    <div class="alert alert-danger" role="alert"><h5>Do you Wonts Deleted records Yes/NO</h5></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="mediadeleted();"><i class="fa fa-check" aria-hidden="true"></i> Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------------------->

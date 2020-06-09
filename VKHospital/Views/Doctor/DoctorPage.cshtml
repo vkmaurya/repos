@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "DoctorPage";
+    Layout = "~/Views/Shared/_AdmainLayout.cshtml";
+}
+
+<h2>DoctorPage</h2>
+
+
+<div>
+    <div>
+        <!-- Button trigger modal -->
+        <div class="row text-left" style="margin-bottom:5px;">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#doctornamemodel"><i class="fa fa-plus" aria-hidden="true"></i> Add New DoctorTypeName </button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12"><span class="alertmessagedoctorname"></span></div>
+        </div>
+       
+        <!-- Modal -->
+        <div class="modal fade" id="doctornamemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetdoctorform();">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <input type="text" id="doctorid" hidden />
+
+                        <div class="form-group">
+                            <label for="doctortypenamedropdown">Select DoctorType Name</label>
+                            <select class="form-control" id="doctortypenamedropdown" >
+                               
+                            </select>
+                            <span class="doctortypenamedropdownvalidation"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctortypename">Enter Doctor Name</label>
+                            <input type="text" class="form-control" id="doctorname" placeholder="Enter Doctor Name">
+                            <span class="doctnamevalidation"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-success" onclick="adddoctorname()"><i class="fa fa-upload" aria-hidden="true"></i> Save </button>
+                        <button type="button" style="color:white" class="btn btn-warning" onclick="resetdoctorform();"><i class="fa fa-refresh" aria-hidden="true"></i>Reset</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="resetdoctorform();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*-----------------------------------------------------------------------------------------------------------------*@
+
+        <table class="table" id="doctorList" style="width:100%">
+            <thead>
+                <tr>
+                    <th>DoctorName</th>
+                    <th>DoctorTypeName</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tfoot>
+            </tfoot>
+
+        </table>
+
+        @*-------------------------------------------------------------------------------------------------------------------------*@
+    </div>
+</div>
+

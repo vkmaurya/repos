@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Media";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12">
+        <div id="mediatypebuttonshow"></div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-12">
+
+        <div class="container-fluid">
+            <div class="row" id="addmediashow">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!------------------------------------------------------------------------------>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="checkmediaavailableModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Media Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="dattimecheck">Enter Date</label>
+                        <input type="text" id="AddmediaID" hidden />
+                        <input type="text" class="form-control" id="datecheck" placeholder="Enter RentDate">
+                        <h5><span id="mediacheckavailable"></span></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" onclick="checkdate();">Check</button>
+                <button type="button" class="btn btn-primary" onclick="AddMediaID();">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-------------------------------------------------------------------------->
+<!-- Button trigger modal -->
+<!-- Modal -->
+@*<div class="modal fade" id="mediabookingid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="mid" hidden />
+                <div>
+
+                    <div class="form-group">
+                        <label for="sdate">BookDate</label>
+                        <input type="text" class="form-control" id="bookdate" placeholder="Please Enter BookDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sdate">BookDate</label>
+                        <input type="text" class="form-control" id="mediaduration" placeholder="Please Enter Duration">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sdate">BookDate</label>
+                        <input type="text" class="form-control" id="bookdate" placeholder="Please Enter BookDate">
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="confirmmediabooking();">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>*@

@@ -1,0 +1,231 @@
+﻿
+@{
+    ViewBag.Title = "UserPage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UserPage</h2>
+
+
+
+
+@*------------------------------AccomodationType Model Start-----------------------------------------*@
+
+<!-- Button trigger modal -->
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#useraddModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New User and Update</button>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-12">
+        <div class="alert alert-success textcenter" role="alert"><span id="usermeddage"></span></div>
+    </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="useraddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" onclick="resetuserform();" id="exampleModalLabel">ADD NEW USER AND UPDATE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetuserform();" >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!------------------------satrt user forms-------------------------------------------->
+                <div class="row">
+
+                    <!----1----->
+                    <div class="form-group col-md-6">
+                        <input type="text" id="userid" hidden />
+                        <label for="user" class="lablename">Enter UserName</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-user-o formicons" aria-hidden="true"></i>  </span></button><input type="text" class="userformcontrol" id="username" autocomplete="off" placeholder="Enter UserName">
+                        <div class="uservalidationmesage"><span id="messageusername"></span></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4" class="lablename">Select Gander </label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-transgender-alt formicons" aria-hidden="true"></i>  </span></button><select class="userformcontrol" id="usergander" autocomplete="off">
+                            <option>Please Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <div class="uservalidationmesage"><span id="messageusergander"></span></div>
+                    </div>
+                    <!-----2---->
+                    <div class="form-group col-md-6">
+                        <label for="useremail" class="lablename">Email Email</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-envelope-o formicons" aria-hidden="true"></i>  </span></button><input type="text" autocomplete="off" class="userformcontrol" id="useremail" placeholder="Enter Email Address">
+                        <div class="uservalidationmesage"><span id="messageuseremail"></span></div>
+                    
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="usercontact" class="lablename">Enter Contact</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-phone formicons" aria-hidden="true"></i>  </span></button><input type="text" autocomplete="off" class="userformcontrol" id="usercontact" placeholder="Please Enter UserContact">
+                        <div class="uservalidationmesage"><span id="messageusercontact"></span></div>
+                    </div>
+                    <!----3----->
+
+                    <div class="form-group col-md-6">
+                        <label for="userdob" class="lablename">Enter DOB</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-calendar formicons" aria-hidden="true"></i>  </span></button><input type="text" autocomplete="off" class="userformcontrol" id="userdob" placeholder="Please Enter DOB">
+                        <div class="uservalidationmesage"><span id="messageuserdob"></span></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="useradharnumber" class="lablename">Enter Adhar Number</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-sort-numeric-asc formicons" aria-hidden="true"></i>  </span></button><input type="text" class="userformcontrol" id="useradharnumber" placeholder="Enter Adhar Number">
+                        <div class="uservalidationmesage"><span id="messageuseradharnumber"></span></div>
+                   
+                    </div>
+                    <!-----4---->
+                    <div class="form-group col-md-6">
+                        <label for="userpassword" class="lablename">Enter Password</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-key formicons" aria-hidden="true"></i>  </span></button><input type="text"  autocomplete="off"  class="userformcontrol" id="userpassword" placeholder="please Enter user password">
+                        <div class="uservalidationmesage"><span id="messageuserpassword"></span></div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4" class="lablename">Enter Address</label><br />
+                        <button class="inputiconsuser"><span><i class="fa fa-map-marker formicons" aria-hidden="true"></i>  </span></button><input class="userformcontrol"  autocomplete="off"   id="useraddress" placeholder="Please Enter User Full Address">
+                        <div class="uservalidationmesage"><span id="messageuseraddress"></span></div>
+                    </div>
+
+
+
+
+                </div>
+                <!-----------------------end user forms------------------------------------------------->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="addandupdateuser();"><i class="fa fa-cloud" aria-hidden="true"></i> Save </button>
+                <button type="button" class="btn btn-warning" style="color:white;" onclick="resetuserform();"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetuserform();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*------------------------------AccomodationType Model End-------------------------------------------*@
+
+@*------------------------------AccomodationType Table Start-----------------------------------------*@
+
+<div>
+    <div>
+        <table class="table table-hover" id="viewUserList" style="width:100%!important">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>UserAddharNumber</th>
+                    <th>UserEmail</th>
+                    <th>Action Button</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@*------------------------------AccomodationType Table End-------------------------------------------*@
+
+
+@*------------------------------AccomodationType Delete Start-------------------------------------------*@
+
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+@*------------------------------AccomodationType Delete End-------------------------------------------*@
+
+
+
+
+@*------------------------------user Details model start-------------------------------------------*@
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="userdetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title alert alert-primary text-center" role="alert" style="width:100%;" id="exampleModalLabel">User Deatils</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <table class="table table-bordered">
+
+                        <tr><th>UserName</th><td id="dusername"></td></tr>
+                        <tr><th>UserRoles</th><td id="duserrole"></td></tr>
+                        <tr><th>Gander</th><td id="dgander"></td></tr>
+                        <tr><th>DOB</th><td id="ddob"></td></tr>
+                        <tr><th>UserAdharNumber</th><td id="duseradharnumber"></td></tr>
+                        <tr><th>UserEmail</th><td id="duseremail"></td></tr>
+                        <tr><th>UserContact </th><td id="dusercontact"></td></tr>
+                        <tr><th>UserPassword</th><td id="duserpassword"></td></tr>
+                        <tr><th>UserAddress</th><td id="duseraddress"></td></tr>
+                        <tr><th>UserCreateDate</th><td id="dcreatedate"></td></tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*------------------------------user Details model End-------------------------------------------*@
+
+@*------------------------------user  RoleAssign model start-----------------------------------------------------*@
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="RoleAssignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="userroleassignid" hidden />
+
+                <div>
+                    <table id="roleview"></table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*------------------------------user  RoleAssign model End-----------------------------------------------------*@
+
+@*--------------------------user deleted model start------------------------------------------*@
+
+
+<!-- Modal -->
+<div class="modal fade" id="uuserdeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color:red;">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="uuserdeletedid" hidden />
+                <div class="alert alert-danger text-center" role="alert"><h5>Do you Wotns Deleted this records yes/no</h5></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="userconfirmuserdeleted();">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*--------------------------user deleted model End------------------------------------------*@

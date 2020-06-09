@@ -1,0 +1,25 @@
+﻿body {
+}
+
+
+.backgroundimg {
+    background-image: url("/images/photo-1538108149393-fbbd81895907.jpg");
+    width: 100%;
+    height: 100%;
+    padding-bottom: 250px;
+    padding-top: 150px;
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
+    background-size: cover;
+}
+
+
+/*--------------------------------------password forgate----------------------------------*/
+
+.forgtepsswordvalidation
+{
+    height:40px;
+    font-size:15px;
+    color:red;
+    font-family:Arial;
+}

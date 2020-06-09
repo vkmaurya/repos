@@ -1,0 +1,60 @@
+﻿body {
+}
+
+.accomodationtypemodelbutton {
+    margin-bottom: 5px;
+}
+
+
+    .accomodationtypemodelbutton:hover {
+        background-color: white;
+        color: green;
+    }
+
+.formcontrol {
+    width: 80%;
+    height: 40px;
+    border: 1px solid black;
+    border-right: none;
+}
+
+.accommodationtypebuttonlogo {
+    margin-top: 1px;
+    height: 40px;
+    border-left: none;
+    border: 1px solid black;
+}
+
+accommodationtypebuttonlogo:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  
+}
+
+
+.formcontrol:focus {
+    outline: none;
+}
+
+.divmessage
+{
+
+    height:30px;
+    margin-top:2px;
+}
+
+.accomodationalertmesagediv {
+    height: 38px;
+    width: 100%;
+    color: green;
+    text-align: center;
+    font-family: Arial;
+    font-size: 20px;
+    
+}
+
+.accomodationallmessagestyle
+{
+    margin-top:-5px;
+}

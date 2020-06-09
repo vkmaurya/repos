@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "SickPage";
+    Layout = "~/Views/Shared/_AdmainLayout.cshtml";
+}
+
+<h2>SickPage</h2>
+
+<!-- Button trigger modal -->
+<div class="row" style="margin-bottom:5px;">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sickModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New SickName</button>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12"><span class="alertmessagesick"></span></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sickModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelsick" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelsick">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <input type="text"  hidden id="sid"/>
+
+                <div class="form-group">
+                    <label for="dtype">DoctorType</label>
+                    <select class="form-control" id="dtype" >
+                       
+                    </select>
+                    <div><span class="dtypenamevalidation"></span></div>
+                   
+                </div>
+
+                <div class="form-group">
+                    <label for="sname">Enter SickName</label>
+                    <input type="text" class="form-control" id="sname"  placeholder="Enter email">
+                    <div><span class="snamevalidation"></span></div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-success" onclick="savesickname();"><i class="fa fa-upload" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-warning" style="color:white" onclick="ResetSicktype();"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="ResetSicktype();"><i class="fa fa-times" aria-hidden="true"></i>Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*//-------------------------------------------------------------------------------*@
+<table class="table" id="sickalldata" style="width:100%!important">
+    <thead>
+        <tr>
+            <th>SickTypeName</th>
+            <th>DoctorName</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+</table>
+
+@*--------------------------------------------------------------------------------------*@

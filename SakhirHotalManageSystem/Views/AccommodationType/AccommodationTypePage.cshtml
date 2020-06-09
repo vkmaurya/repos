@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "AccommodationTypePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>AccommodationTypePage</h2>
+
+@*------------------------------AccomodationType Model Start-----------------------------------------*@
+
+<!-- Button trigger modal -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <button type="button" class="btn btn-success accomodationtypemodelbutton" data-toggle="modal" data-target="#AccomodationModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New AccommodationType</button>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-6">
+           <div class="alert alert-info accomodationalertmesagediv" role="alert"><h5 class="accomodationallmessagestyle" id="accomodationallmessage"></h5></div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="AccomodationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Accommodation Type Add And Update</h5>
+                <button type="button" onclick="ResetAccomodationtypeform();" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+
+                    <div class="form-group">
+                        <input type="text" id="accommodationtypeid" hidden />
+                        <label for="exampleInputPassword1">Enter AccommodationTypeName</label><br />
+                        <input type="text" class="formcontrol" id="accomodationtypename" placeholder="Enere Accommodation Name"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommodationtypevalidation"></span></div>
+                    </div>
+
+
+                    <div class="form-group">
+                     
+                        <label for="exampleInputPassword1">Description</label><br />
+                        <input type="text" class="formcontrol" id="accommodationdescription" placeholder="Enere Description Name"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommodationtypevalidationdescription"></span></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        
+                        <label for="exampleInputPassword1">Description</label><br />
+                        <input type="file" class="formcontrol" id="accommodationtypeimages" multiple placeholder="Enere Description Name"><button class="accommodationtypebuttonlogo"><i class="fa fa-keyboard-o" style="font-size:22px;" aria-hidden="true"></i></button>
+                        <div class="divmessage"><span id="accommoationtypeimages"></span></div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" onclick="accommodationtypeaddandupdate();"><i class="fa fa-cloud" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-warning" style="color:white" onclick="ResetAccomodationtypeform();"> <i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ResetAccomodationtypeform();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*------------------------------AccomodationType Model End-------------------------------------------*@
+
+@*------------------------------AccomodationType Table Start-----------------------------------------*@
+
+<div>
+    <div>
+        <table class="table table-hover" id="viewAccommodationTypelist" style="width:100%!important">
+            <thead>
+                <tr>
+                    <th>AccomodationType</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@*------------------------------AccomodationType Table End-------------------------------------------*@
+
+
+@*------------------------------AccomodationType Delete Start-------------------------------------------*@
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="accomodationtypeModaldelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <input type="text" id="accomodationtypedeleteid" hidden />
+                <div class="alert alert-danger" role="alert"><h5>Do You Wonts Deleted this records yes/no</h5></div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" onclick="deleteaccommodationtype();"><i class="fa fa-trash-o" aria-hidden="true"></i> Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*------------------------------AccomodationType Delete End-------------------------------------------*@
+
+

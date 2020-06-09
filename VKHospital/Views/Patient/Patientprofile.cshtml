@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Patientprofile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row text-center">
+    <div class="col-lg-3 col-md-3 col-sm-12"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div>
+            <h4><span>Patientprofile</span></h4>
+            <input type="text" id="PatientIDget" hidden class="form-control hidden" />
+            <table class="table table-bordered table-hover">
+                <tr><th>PtaintID</th><td><span class="ptaintid"></span></td></tr>
+                <tr><th>SSNumber</th><td><span class="ssnumber"></span></td></tr>
+                <tr><th>Patient Name</th><td><span class="Patientname"></span></td></tr>
+                <tr><th>DOB</th><td><span class="DOB"></span></td></tr>
+                <tr><th>Gander</th><td><span class="Gander"></span></td></tr>
+                <tr><th>Contact</th><td><span class="Contact"></span></td></tr>
+                <tr><th>Email</th><td><span class="Email"></span></td></tr>
+                <tr><th>Address</th><td><span class="Address"></span></td></tr>
+                <tr><th>PROFILE</th><td><button class="btn btn-info form-control" data-toggle="modal" data-target="#patientprofileupdatemodel" onclick="updateprofile();">Update</button></td></tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12"></div>
+</div>
+
+<!-- --------------------------Modal   Start -------------------------------------------------------------- -->
+@*<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#patientprofileupdatemodel">Open Modal</button>*@
+
+<!-- Modal -->
+<div class="modal fade" id="patientprofileupdatemodel" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                
+                <input type="text" id="upatientid" hidden />
+
+                <div>
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label text-right"> Name </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="formcontrol" id="uname" placeholder="Enter Name">
+                            <br /> <span class="message" id="umessagename"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="gander" class=" col-sm-2 col-form-label text-right"> Gander </label>
+                        <div class="col-sm-10">
+                            <select class="formcontrol" id="ugander">
+                                <option>Please Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <br /> <span class="message" id="umessagegander"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="dob" class="col-sm-2 col-form-label text-right">DOB</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="formcontrol text-left" id="udob" placeholder="dd/mm/yyyy">
+                            <br /> <span class="message" id="umessagedob"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="contact" class="col-sm-2 col-form-label text-right">Contact</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="formcontrol" id="ucontact" placeholder="Enter Contact Number">
+                            <br />  <span class="message" id="umessagecontact"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label text-right">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="formcontrol" id="uemail" placeholder="Enter Email Address">
+                            <br /><span class="message" id="umessageemail"></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-2 col-form-label text-right">Address</label>
+                        <div class="col-sm-10">
+                            <textarea class="formcontrol" id="uaddress" placeholder="Enter Address"></textarea>
+                            <br /><span class="message" id="umessageaddress"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="patientprofileupdate();">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

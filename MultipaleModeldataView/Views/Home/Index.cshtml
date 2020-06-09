@@ -1,0 +1,49 @@
+﻿
+@using MultipaleModeldataView.Models
+@model VmModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Contact</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.students)
+        {
+            <tr>
+                <th>@i.StudentName</th>
+                <th>@i.Contact</th>
+                <th>@i.Email</th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>CourseName</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.courses)
+        {
+            <tr>
+                <th>@i.Ciursename</th>
+                
+            </tr>
+        }
+    </tbody>
+</table>

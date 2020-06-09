@@ -1,0 +1,98 @@
+﻿body {
+}
+
+
+.welcome
+{
+    font-weight:bolder;
+}
+
+.With
+{
+    font-size:17px;
+    letter-spacing:0.5px;
+    line-height:30px;
+    font-family:'Arial';
+}
+
+.Our {
+    color: #33FF00;
+    font-weight:bolder;
+    font-family:Algerian;
+}
+
+.imagesmessage {
+    font-weight: bolder;
+    color: black;
+    font-size: 20px;
+    text-align:center;
+   
+}
+
+.ourservice {
+    background-image: url('/images/Cataract-Treatment.png');
+    height: 400px;
+    background-repeat: no-repeat;
+    width:100%;
+    text-align: center;
+}
+
+.ourservice1 {
+    background-image: url('/images/Lasik-treatment.png');
+    height: 400px;
+    background-repeat: no-repeat;
+    text-align: center;
+    width: 100%;
+}
+.ourservice2 {
+    background-image: url('/images/Retina-Clinic.png');
+    height: 400px;
+    background-repeat: no-repeat;
+    text-align: center;
+    width: 100%;
+}
+
+.imagescontent{
+
+    color:white;
+    font-size:20px;
+    font-weight:bolder;
+   
+}
+
+.imagedivcontent{
+
+    padding-top:325px;
+}
+
+.Operation {
+    color: #33FF00;
+    font-size:25px;
+    font-family:Arial;
+    font-weight:bolder;
+}
+
+.Dhami
+{
+    font-size:15px;
+    line-height:35px;
+    word-spacing:0.5px;
+    letter-spacing:0.7px;
+
+}
+
+.icons
+{
+    /*height:30px;
+    width:50px;
+    background-color:red;*/
+}
+
+.fonticons
+{
+    font-size:40px;
+    margin-right:5px;
+    margin-top:50px;
+    margin-bottom:50px;
+    color:white;
+}

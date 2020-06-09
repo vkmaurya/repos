@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "MemberPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MemberPage</h2>
+
+<div class="row">
+    <div class="container text-center">
+        <div class="row text-center" id="membershipview">
+
+        </div>
+
+    </div>
+</div>
+
+
+<!------------------------------------------------------------------------------------>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="memberaddmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">MemberAdd</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" id="addmemvershipid" hidden />
+                    <div class="alert alert-success" role="alert">
+                        <h5>Do you wonts AddMemberShip   Yes/No</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="membershipplaneid()">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+            </div>
+        </div>
+    </div>
+</div>

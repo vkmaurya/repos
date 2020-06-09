@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "UserAccountCreatePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xm-12"></div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xm-12">
+
+            <div class="container" style="background-color:cyan;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+
+                        <div>
+
+                            <br />
+                            <h2 class="text-center">Registration  Here</h2>
+                            <br />
+
+
+                            <div class="registrationdiv">
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="formcontrolregistration" id="name" placeholder="Enter Name">
+                                        <h5 class="formmessage"><span class="" id="namevalidation"></span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="formcontrolregistration" id="email" placeholder="Enter Email">
+                                        <h5 class="formmessage"><span class="" id="emailvalidation"></span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="formcontrolregistration" id="contact" placeholder="Enter Contact">
+                                        <h5 class="formmessage"><span class="" id="contactvalidation"></span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="formcontrolregistration" id="password" placeholder="Enter Password">
+                                        <h5 class="formmessage"><span class="" id="paswordvalidation"></span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+
+                                        <textarea class="formcontrolregistration" id="address" rows="2" placeholder="Full Address"></textarea>
+                                        <h5 class="formmessage"><span class="" id="validationaddress"></span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input type="button" class="formcontrolregistration btn-success" value="Submit" onclick="uSerRegistration();">
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xm-12"></div>
+    </div>
+</div>
+
+
+

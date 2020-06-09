@@ -1,0 +1,17 @@
+﻿body {
+}
+
+
+.validationmediatypevalidation
+{
+    color:red;
+    font-size:15px;
+    font-family:Arial;
+}
+
+.mediatypesuccessmessage
+{
+    color:green;
+    font-family:Arial;
+    font-size:25px;
+}

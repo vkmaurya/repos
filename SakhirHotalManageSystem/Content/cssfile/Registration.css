@@ -1,0 +1,19 @@
+﻿body {
+}
+
+
+.customeformfont
+{
+    color:red;
+    font-family:'Engravers';
+    font-size:15px;
+    word-spacing:0.5px;
+    margin-left:5px;
+}
+
+
+.customerregistrationbutton
+{
+    color:white;
+    font-size:20px;
+}

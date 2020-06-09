@@ -1,0 +1,64 @@
+﻿body {
+}
+
+
+.slideimages {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-size: contain;
+    max-height: 600px !important;
+}
+
+.MEDICALsercice {
+    background-color: cyan;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: white;
+    display:inline-block;
+}
+
+.Get {
+    font-size: 15px;
+    line-height: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.MEDICAL {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.View {
+    padding-left: 20px;
+    padding-right: 20px;
+    background: none;
+    border-bottom: 3px solid white;
+    border-top: 3px solid white;
+    border-left: 3px solid white;
+    border-right: 3px solid white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.buttonmaps {
+    padding-left: 20px;
+    padding-right: 20px;
+    background: none;
+    border-bottom: 3px solid white;
+    border-top: 3px solid white;
+    border-left: 3px solid white;
+    border-right: 3px solid white;
+    margin-top: 34px;
+    margin-bottom: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.A
+{
+    margin-bottom:15px;
+}

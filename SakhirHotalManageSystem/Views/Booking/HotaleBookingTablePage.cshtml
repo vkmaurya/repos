@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "HotaleBookingTablePage";
+    Layout = "~/Views/Shared/_CounterOlyout.cshtml";
+}
+
+
+<br />
+<div class="alert alert-success text-center" role="alert" style="height:40px;"><h5 style="margin-top:-13px!important;"><span style="font-size:30px;font-family:Arial" id="bookingstatusmessage"></span></h5></div>
+<br />
+<div>
+    <div>
+        <table class="table table-hover" id="hotalbookingtable" style="width:100%!important">
+            <thead>
+                <tr>
+
+                    <th>GuestName</th>
+                    <th>BookingEmail</th>
+                    <th>BookingDate</th>
+                    <th>ActionButton</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+<!------------------------------------------Hota booking Model---------------------------------------------------->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="hotalbookingdetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Customer Booking Hotal Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div>
+                        <table class="table table-hover">
+
+                            <tr><th>GuestName</th><td id="GuestName"></td></tr>
+                            <tr><th>BookingEmail</th><td id="BookingEmail"></td></tr>
+                            <tr><th>BookingDate</th><td id="BookingDate"></td></tr>
+                            <tr><th>CheckInDate</th><td id="CheckInDate"></td></tr>
+                            <tr><th>AccommodationTypeName</th><td id="AccommodationTypeName"></td></tr>
+                            <tr><th>AccommodationPackageName</th><td id="AccommodationPackageName"></td></tr>
+                            <tr><th>FeePerNight</th><td id="FeePerNight"></td></tr>
+                            <tr><th>Duration</th><td id="Duration"></td></tr>
+                            <tr><th>NoOfAdults</th><td id="NoOfAdults"></td></tr>
+                            <tr><th>NoOfChildren</th><td id="NoOfChildren"></td></tr>
+                            <tr><th>AccommodationName</th><td id="AccommodationName"></td></tr>
+                            <tr><th>NoOfRoom</th><td id="NoOfRoom"></td></tr>
+                            <tr><th>TotalAmount</th><th id="totalAmount"></th></tr>
+                            <tr><th>CustomerName</th><td id="CustomerName"></td></tr>
+                            <tr><th>CustomerContact</th><td id="CustomerContact"></td></tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!----------------------------------------------hotal check in model-------------------------------------------------------->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="hotalcheckinmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Customer CheckIn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <input type="text" id="bookingcheckinid" class="form-control"  hidden/>
+
+                <div class="alert alert-primary" role="alert">
+                    <h4>do you wonts sure checkIn Yes/No</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="customercheckin();"><i class="fa fa-check" aria-hidden="true"></i> Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fa fa-times" aria-hidden="true"></i> No</button>
+            </div>
+        </div>
+    </div>
+</div>

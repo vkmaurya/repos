@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.logo a {
+    color: #00FF00;
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    font-family: 'Snell Roundhand','cursive';
+    font-style: oblique;
+    font-weight: bold;
+}
+
+
+
+.myNav ul li a
+{
+    font-size:16px;
+    font-family:Arial;
+    font-style:initial;
+    text-transform:uppercase;
+    color:black;
+}
+
+.myNav ul li a:hover
+{
+    color:#00FF00;
+    background-color:white;
+    font-size:20px;
+    border-bottom:3px solid #00FF00;
+}

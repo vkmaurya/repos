@@ -1,0 +1,209 @@
+﻿
+
+@{
+    ViewBag.Title = "ViewAccommodationpackagePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<aside id="colorlib-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style="background-image: url(/FrontDeskTamplates/images/img_bg_5.jpg);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+                            <div class="slider-text-inner slider-text-inner2 text-center">
+                                <h2>Choose our Best</h2>
+                                <h1>Rooms &amp; Suites</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div id="colorlib-rooms" class="colorlib-light-grey">
+    <!---Dropdoun List start------->
+    <div class="container">
+        <div class="row">
+            <div class="col-4 col-md-4 col-sm-12">
+                <div>
+                    <input type="text" id="accommodationtypename" hidden />
+                    <select class="accommodationviewdropdownlist" id="accommodationpackagedropdownListshow"></select>
+                </div>
+            </div>
+            <div class="col-4 col-md-4 col-sm-12"> <select class="accommodationviewdropdownlist" id=""></select></div>
+            <div class="col-4 col-md-4 col-sm-12"> <select class="accommodationviewdropdownlist" id=""></select></div>
+        </div>
+    </div>
+    <br />
+    <!---Dropdownlist End------->
+
+    <div class="container">
+        <div class="row">
+            <div id="allaccommodationlistshow">
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class=""></div>
+
+            <div class="col-md-4 room-wrap animate-box">
+                <a href="images/room-1.jpg" class="room image-popup-link" style="background-image: url(/FrontDeskTamplates/images/room-1.jpg);"></a>
+                <div class="desc text-center">
+                    <span class="rate-star"><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span>
+                    <h3><a href="rooms-suites.html">Suite</a></h3>
+                    <p class="price">
+                        <span class="currency">$</span>
+                        <span class="price-room">149</span>
+                        <span class="per">/ per night</span>
+                    </p>
+                    <ul>
+                        <li><i class="icon-check"></i> Only 10 rooms are available</li>
+                        <li><i class="icon-check"></i> Breakfast included</li>
+                        <li><i class="icon-check"></i> Price does not include VAT &amp; services fee</li>
+                    </ul>
+                    <p><a class="btn btn-primary btn-book">Book now!</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 room-wrap animate-box">
+                <a href="images/room-2.jpg" class="room image-popup-link" style="background-image: url(/FrontDeskTamplates/images/room-2.jpg);"></a>
+                <div class="desc text-center">
+                    <span class="rate-star"><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full"></i></span>
+                    <h3><a href="rooms-suites.html">Double Room</a></h3>
+                    <p class="price">
+                        <span class="currency">$</span>
+                        <span class="price-room">199</span>
+                        <span class="per">/ per night</span>
+                    </p>
+                    <ul>
+                        <li><i class="icon-check"></i> Perfect for traveling couples</li>
+                        <li><i class="icon-check"></i> Breakfast included</li>
+                        <li><i class="icon-check"></i> Price does not include VAT &amp; services fee</li>
+                    </ul>
+                    <p><a class="btn btn-primary btn-book">Book now!</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 room-wrap animate-box">
+                <a href="images/room-3.jpg" class="room image-popup-link" style="background-image: url(/FrontDeskTamplates/images/room-3.jpg);"></a>
+                <div class="desc text-center">
+                    <span class="rate-star"><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full full"></i><i class="icon-star-full"></i></span>
+                    <h3><a href="rooms-suites.html">Family Room</a></h3>
+                    <p class="price">
+                        <span class="currency">$</span>
+                        <span class="price-room">249</span>
+                        <span class="per">/ per night</span>
+                    </p>
+                    <ul>
+                        <li><i class="icon-check"></i> Two double beds</li>
+                        <li><i class="icon-check"></i> Babysitting facilities</li>
+                        <li><i class="icon-check"></i> 1 free bed available on request</li>
+                    </ul>
+                    <p><a class="btn btn-primary btn-book">Book now!</a></p>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!----------------------------------------View Accommodation Booking Model---------------------------------------------->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="HotalBookingmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Hotal Booking Information</h3>
+                <button type="button" onclick="Resetbookingform();" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+
+
+                    <!-------------------------form start-------------------------------------------------->
+
+                    <div class="form-row">
+
+                        <input type="text" id="accommodationbbokingid" hidden class="form-control hidden" />
+
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Check in Date</label> <span class="customeformfont" id="messagecheckindate"></span>
+                            <input type="text" class="form-control" id="checkindate" placeholder="Enter Check In Date">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Duration of Stay Nights</label> <span class="customeformfont" id="messagedurationstaynight"></span>
+                            <select class="form-control" id="durationstaynight">
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">No Of Adults</label>  <span class="customeformfont" id="messagenoofadults"></span>
+                            <input type="number" class="form-control" id="noofadults" value="1" min="1" max="10" placeholder="No Of Adults">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">No Of Children</label> <span class="customeformfont" id="messagenoofchildren"></span>
+                            <input type="number" class="form-control" id="noofchildren" value="0" min="0" max="10"  placeholder="No Of Children">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Guset Name</label> <span class="customeformfont" id="messageGuestName"></span>
+                            <input type="text" class="form-control" id="GuestName" placeholder="Enter Guest Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Email</label>  <span class="customeformfont" id="messagebookingemail"></span>
+                            <input type="text" class="form-control" id="bookingemail" placeholder="Email Address">
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <label for="inputAddress" style="margin-left:12px!important;">Add Special Notes</label> <span class="customeformfont" id="messagenoteaddmessage"></span>
+                        <textarea  class="form-control" style="width:97%!important; margin-left:12px!important;" id="noteaddmessage" placeholder="Add Special Note Here"></textarea>
+                    </div>
+
+
+                    <!---------------------------Form End------------------------------------------------------->
+
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" onclick="hotalbooking();"><span><i class="fa fa-cloud" aria-hidden="true"></i></span>  Submit</button>
+                <button type="button" class="btn btn-warning" onclick="Resetbookingform();"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Reset</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Resetbookingform();"> <span><i class="fa fa-times" aria-hidden="true"></i></span> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+

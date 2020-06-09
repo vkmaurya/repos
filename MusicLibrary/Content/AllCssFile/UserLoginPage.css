@@ -1,0 +1,35 @@
+﻿body {
+}
+
+
+.logininput {
+    width: 60%;
+    height: 40px;
+}
+
+    .logininput :focus {
+        border-color: ghostwhite;
+    }
+
+.loginsigupbutton {
+    width: 24%;
+    height: 35px;
+}
+
+.loginbuttonforgate {
+    width: 35%;
+    height: 35px;
+}
+
+.invalidmessage
+{
+    color:red;
+    font-size:20px;
+    font-family:Arial;
+}
+
+.message {
+    color: red;
+    font-size: 15px;
+    font-family: Arial;
+}

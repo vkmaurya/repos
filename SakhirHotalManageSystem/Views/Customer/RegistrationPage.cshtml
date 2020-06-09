@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "RegistrationPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs12"></div>
+
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs12">
+            <div>
+
+                <div class="form-group">
+                    <label for="cname">Name</label>  <span class="customeformfont" id="messagecname"></span>
+                    <input type="text" class="form-control" id="cname" placeholder="Enter Full Name">
+
+                </div>
+
+                <div class="form-group">
+                    <label for="cgander">Gander</label> <span class="customeformfont" id="messagecgander"></span>
+                    <select type="text" class="form-control" id="cgander">
+                        <option>Please Select Gander</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="cemail">Email</label>   <span class="customeformfont" id="messagecemail"></span>
+                    <input type="text" class="form-control" id="cemail" placeholder="Enter Email Address">
+
+                </div>
+
+                <div class="form-group">
+                    <label for="ccontact">Contact</label>  <span class="customeformfont" id="messageccontact"></span>
+                    <input type="text" class="form-control" id="ccontact" placeholder="Enter Contact Number">
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="cpassword">Password</label>   <span class="customeformfont" id="messagecpassword"></span>
+                    <input type="text" class="form-control" id="cpassword" placeholder="Enter  Password">
+
+                </div>
+
+                <div class="form-group">
+                    <label for="ccpassword">Confirm Password</label>   <span class="customeformfont" id="messageccpassword"></span>
+                    <input type="text" class="form-control" id="ccpassword" placeholder="Enter Confirm Password">
+
+                </div>
+
+
+                <div class="form-group">
+                    <br/>
+                   <button class="btn btn-success form-control" style="background-color:forestgreen!important" onclick="CustomerRegistration();"><span class="customerregistrationbutton">SUBMIT</span></button>
+                    <br/>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs12"></div>
+
+    </div>
+</div>

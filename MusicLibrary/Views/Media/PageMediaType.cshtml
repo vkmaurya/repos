@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "PageMediaType";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>PageMediaType</h2>
+<!-- Modal -->
+<div class="row">
+    <div class="col-6">
+        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#mediatypemodelModal"><i class="fa fa-plus" aria-hidden="true"></i> Add New MediaType</button>
+    </div>
+    <div class="col-6"><span class="mediatypesuccessmessage" id="mediatypesuccessmessage"></span></div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------------>
+<div class="modal fade" id="mediatypemodelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Add And Update MediaType Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ResetFormMediaType();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <div class="form-group">
+                        <input type="text" id="mediatypeid" hidden />
+                        <label for="mediatypename">MediaType Name: </label>
+                        <input type="text" class="form-control" id="mediatypename" placeholder="Enter Media TypeName">
+                        <span class="validationmediatypevalidation" id="mediatypemessage"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="savemediatype();"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+                <button type="button" class="btn btn-warning" style="color:white!important" onclick="ResetFormMediaType();"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ResetFormMediaType();"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------------------>
+
+<div>
+    <div>
+        <div>
+            <table class="table" id="MediTypetable" style="width:100%!important">
+                <thead>
+                    <tr>
+                        <th>MediaTypeName</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------------------->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="mediatypdeleteModalLabel" tabindex="-1" role="dialog" aria-labelledby="mediatypdeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">MediaType Deleted</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" id="mediatypupdateid" hidden />
+                    <div class="alert alert-danger" role="alert"><h5>Do you Wonts Deleted records Yes/NO</h5></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="mediatypedeleted();"><i class="fa fa-check" aria-hidden="true"></i> Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> No</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------------------->
